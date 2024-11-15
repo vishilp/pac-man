@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <SDL_image.h>
+#include "TextureManager.h"
 
 class Game {
 	
@@ -19,8 +20,8 @@ class Game {
 		bool running();
 
 	private:
-		bool isRunning;
-		SDL_Window* window;
-		SDL_Renderer* renderer;
+		bool isRunning =false;
+		SDL_Window* window =nullptr;
+		SDL_Renderer* renderer =nullptr;
 };
 

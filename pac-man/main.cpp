@@ -4,8 +4,8 @@
 #include "Game.h"
 
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 452;
+const int SCREEN_HEIGHT = 496;
 
 Game* game = nullptr;
 
@@ -17,6 +17,7 @@ int main(){
 
 	game = new Game();
 	game->init("Pac-Man", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT);
+	game->loadBoard();
 
 	while (game->running())
 	{

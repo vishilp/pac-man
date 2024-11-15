@@ -1,5 +1,7 @@
 #include "Game.h"
 
+SDL_Texture* board;
+
 Game::Game() {}
 Game::~Game() {}
 
@@ -14,16 +16,20 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height)
 			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		}
 		isRunning = true;
-		if (IMG_Init(IMG_INIT_PNG) != 0) {
-			SDL_Surface* tempSurface = IMG_Load("assets/board.png");
-			SDL_Texture* spriteSheet = SDL_CreateTextureFromSurface(renderer, tempSurface);
-			SDL_FreeSurface(tempSurface);
-			SDL_Texture* board = IMG_LoadTexture(renderer, "assets/board.png");
-		}
 	}
 	else
 		isRunning = false;
 }
+
+void Game::loadBoard() {
+
+	if (IMG_Init(IMG_INIT_PNG) != 0 && isRunning) {
+		SDL_Surface* tempSurface = IMG_Load("assets/board.png");
+		board = SDL_CreateTextureFromSurface(renderer, tempSurface);
+		SDL_FreeSurface(tempSurface);
+	}
+}
+
 
 void Game::handleEvents() {
 	SDL_Event event;
@@ -44,6 +50,7 @@ void Game::update() {
 void Game::render() {
 	SDL_RenderClear(renderer);
 	//add stuff for rendering
+	SDL_RenderCopy(renderer, board, NULL, NULL); //render whole board png
 
 	SDL_RenderPresent(renderer);
 }

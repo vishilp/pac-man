@@ -12,16 +12,34 @@ SDL_Texture* TextureManager::LoadTexture(const char* file, SDL_Renderer* rendere
 }
 
 
-SDL_Rect* TextureManager::ReturnSpriteRect(char c)
+SDL_Rect* TextureManager::ReturnSpriteRect(int id)
 {
 	SDL_Rect rect;
-	switch (c)
+	int x = 0;
+	int y = 0;
+	int temp = 0;
+	//sprite getting math
+	if (id < 17)
 	{
-		case 'r':
-			rect = { 18, 54, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
-			return &rect;
-		case '#':
-			rect = { 180, 54, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
-			return &rect;
+		x = (2 * (id - 1)) + (16 * (id - 1));
+		y = 0;
+		rect = { x, y, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
+		return &rect;
+	}
+	if (id < 33)
+	{
+		y = 18;
+		temp = id - 16;
+		x= (2 * (temp - 1)) + (16 * (temp - 1));
+		rect = { x, y, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
+		return &rect;
+	}
+	else
+	{
+		y = 36;
+		temp = id - 32;
+		x = (2 * (temp - 1)) + (16 * (temp - 1));
+		rect = { x, y, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
+		return &rect;
 	}
 }

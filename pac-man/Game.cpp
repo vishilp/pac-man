@@ -30,22 +30,14 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height)
 void Game::loadBoard() {
 
 	wallsheet= TextureManager::LoadTexture("assets/walls.png", renderer);
-	for (int i = 0; i < map->width; i++)
+	for (int i = 0; i < map->height; i++)
 	{
-		char walltype = map->board1[0][i];
-		SDL_Rect dest = { i * TextureManager::SpriteWidth, 0, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
-		switch (walltype)
+		for (int j = 0; j < map->width; j++)
 		{
-			case 'r':
-				SDL_RenderCopy(renderer, wallsheet, TextureManager::ReturnSpriteRect('r'), &dest);
-				break;
-			case '#':
-				SDL_RenderCopy(renderer, wallsheet, TextureManager::ReturnSpriteRect('#'), &dest);
-				break;
-
+			int walltype = map->board1[j][i];
+			SDL_Rect dest = { i * TextureManager::SpriteWidth, j*TextureManager::SpriteHeight, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
+			SDL_RenderCopy(renderer, wallsheet, TextureManager::ReturnSpriteRect(walltype), &dest);
 		}
-
-
 
 	}
 }

@@ -18,7 +18,7 @@ SDL_Rect* TextureManager::ReturnSpriteRect(int id)
 	int x = 0;
 	int y = 0;
 	int temp = 0;
-	//sprite getting math
+
 	if (id < 17)
 	{
 		x = (2 * (id - 1)) + (16 * (id - 1));

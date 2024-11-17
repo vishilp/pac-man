@@ -11,7 +11,7 @@ Game* game = nullptr;
 
 int main(){
 	const int FPS = 60;
-	const int FrameDelay = 1000 / FPS;
+	const int FrameDelay = 1000 / FPS; //time between frames in ms
 	Uint32 FrameStart;
 	int FrameTime;
 
@@ -20,9 +20,18 @@ int main(){
 
 	while (game->running())
 	{
+		FrameStart = SDL_GetTicks();
+
 		game->handleEvents();
 		game->update();
 		game->render();
+
+		FrameTime = SDL_GetTicks() - FrameStart;
+
+		if (FrameDelay > FrameTime)
+		{
+			SDL_Delay(FrameDelay - FrameTime);
+		}
 	}
 
 	game->clean();

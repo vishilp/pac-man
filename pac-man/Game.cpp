@@ -43,15 +43,17 @@ void Game::loadBoard() {
 			else
 				SDL_RenderCopy(renderer, wallsheet, spriterect, &dest);
 
-			if (walltype == PACMAN)
-			{
-				SDL_Texture* pacman = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
-				SDL_Rect spawnpoint = { 16 * i, 16 * j, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
-				SDL_RenderCopy(renderer, pacman, TextureManager::ReturnPacmanRect(), &spawnpoint);
-			}
 		}
 
 	}
+
+}
+
+void Game::renderPacMan()
+{
+	SDL_Texture* pacman = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
+	SDL_Rect spawnpoint = { player->pixelX(), player->pixelY(), TextureManager::SpriteWidth, TextureManager::SpriteHeight};
+	SDL_RenderCopy(renderer, pacman, TextureManager::ReturnPacmanRect(), &spawnpoint);
 
 }
 
@@ -68,10 +70,7 @@ void Game::handleEvents() {
 			for (int i = 0; i < TextureManager::SpriteWidth; i++)
 			{
 				player->movePacMan();
-				SDL_Texture* pacman = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
-				SDL_Rect spawnpoint = { player->pixelX(), player->pixelY(), TextureManager::SpriteWidth, TextureManager::SpriteHeight };
-				SDL_RenderCopy(renderer, pacman, TextureManager::ReturnPacmanRect(), &spawnpoint);
-				SDL_RenderPresent(renderer);
+				render();
 			}
 			map->movePacMan(RIGHT, player->Row(), player->Col());
 			// and then move his actual rows/cols
@@ -89,6 +88,7 @@ void Game::render() {
 	SDL_RenderClear(renderer);
 	//add stuff for rendering
 	loadBoard();
+	renderPacMan();
 	SDL_RenderPresent(renderer);
 }
 

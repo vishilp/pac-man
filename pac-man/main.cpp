@@ -10,7 +10,7 @@ const int SCREEN_HEIGHT = 496;
 Game* game = nullptr;
 
 int main(){
-	const int FPS = 60;
+	const int FPS = 30;
 	const int FrameDelay = 1000 / FPS; //time between frames in ms
 	Uint32 FrameStart;
 	int FrameTime;

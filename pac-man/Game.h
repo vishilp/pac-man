@@ -15,7 +15,8 @@ class Game {
 
 		void init(const char* title, int xpos, int ypos, int width, int height);
 
-		void loadBoard(); //run it once
+		void loadBoard(); 
+		void renderPacMan();
 
 		void handleEvents();
 		void update();

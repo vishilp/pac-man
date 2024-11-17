@@ -1,14 +1,14 @@
 #include "PacMan.h"
 
-PacMan::PacMan(int x, int y)
+PacMan::PacMan(int r, int c)
 {
-	posx = x;
-	posy = y;
+	row = r;
+	col = c;
 }
 
 void PacMan::movePacMan()
 {
-	posx += 1;
+	col += 1;
 }
 
 PacMan::~PacMan()

@@ -1,7 +1,6 @@
 #include "Game.h"
 
 
-
 Game::Game() {}
 Game::~Game() {}
 
@@ -21,7 +20,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height)
 	else
 		isRunning = false;
 	map = new Board();
-	player = new PacMan(0, 0);
+	player = new PacMan(23,13);
 
 	
 }
@@ -43,14 +42,15 @@ void Game::loadBoard() {
 			}
 			else
 				SDL_RenderCopy(renderer, wallsheet, spriterect, &dest);
+
+			if (walltype == 100)
+			{
+				SDL_Texture* pacman = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
+				SDL_Rect spawnpoint = { 16 * i, 16 * j, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
+				SDL_RenderCopy(renderer, pacman, TextureManager::ReturnPacmanRect(), &spawnpoint);
+			}
 		}
 
-	}
-	if (player->isAlive())
-	{
-		SDL_Texture* pacman = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
-		SDL_Rect spawnpoint = { 16*player->posX(), 16 * player->posY(), TextureManager::SpriteWidth, TextureManager::SpriteHeight};
-		SDL_RenderCopy(renderer, pacman, TextureManager::ReturnPacmanRect(), &spawnpoint);
 	}
 
 }
@@ -63,6 +63,10 @@ void Game::handleEvents() {
 		case SDL_QUIT:
 			isRunning = false;
 			break;
+		case SDL_KEYDOWN:
+			//switch event.key.keysym.sym = sdlk_right
+			map->movePacMan(RIGHT, player->Row(), player->Col());
+			player->movePacMan();
 		default:
 			break;
 	}
@@ -71,7 +75,6 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-	player->movePacMan();
 }
 
 void Game::render() {

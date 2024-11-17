@@ -5,6 +5,7 @@
 #include "PacMan.h"
 #include "Board.h"
 #include "Dot.h"
+#include "globals.h"
 
 class Game {
 	

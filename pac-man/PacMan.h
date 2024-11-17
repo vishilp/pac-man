@@ -5,15 +5,15 @@
 
 class PacMan {
 	public:
-		PacMan(int x, int y); //how does inheritance work with constructors?
+		PacMan(int row, int col); //how does inheritance work with constructors?
 		~PacMan();
 		bool isAlive();
 		void movePacMan();
-		int posX() { return posx; }
-		int posY() { return posy; }
+		int Row() { return row; } //in the array, NOT in pixels
+		int Col() { return col; }
 
 	private:
 		bool alive = true;
-		int posx;
-		int posy;
+		int row;
+		int col;
 };

@@ -43,7 +43,7 @@ void Game::loadBoard() {
 			else
 				SDL_RenderCopy(renderer, wallsheet, spriterect, &dest);
 
-			if (walltype == 100)
+			if (walltype == PACMAN)
 			{
 				SDL_Texture* pacman = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
 				SDL_Rect spawnpoint = { 16 * i, 16 * j, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
@@ -65,8 +65,16 @@ void Game::handleEvents() {
 			break;
 		case SDL_KEYDOWN:
 			//switch event.key.keysym.sym = sdlk_right
+			for (int i = 0; i < TextureManager::SpriteWidth; i++)
+			{
+				player->movePacMan();
+				SDL_Texture* pacman = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
+				SDL_Rect spawnpoint = { player->pixelX(), player->pixelY(), TextureManager::SpriteWidth, TextureManager::SpriteHeight };
+				SDL_RenderCopy(renderer, pacman, TextureManager::ReturnPacmanRect(), &spawnpoint);
+				SDL_RenderPresent(renderer);
+			}
 			map->movePacMan(RIGHT, player->Row(), player->Col());
-			player->movePacMan();
+			// and then move his actual rows/cols
 		default:
 			break;
 	}

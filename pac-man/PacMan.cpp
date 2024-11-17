@@ -8,7 +8,7 @@ PacMan::PacMan(int r, int c)
 	pixely = row * 16;
 }
 
-void PacMan::movePacMan()
+void PacMan::movePacMan(int dir)
 {
 	pixelx++;
 }

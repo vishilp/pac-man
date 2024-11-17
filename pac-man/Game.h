@@ -17,6 +17,7 @@ class Game {
 
 		void loadBoard(); 
 		void renderPacMan();
+		void updatePacMan(int direction);
 
 		void handleEvents();
 		void update();

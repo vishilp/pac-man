@@ -8,7 +8,7 @@ class PacMan {
 		PacMan(int row, int col); //how does inheritance work with constructors?
 		~PacMan();
 		bool isAlive();
-		void movePacMan();
+		void movePacMan(int dir);
 		int Row() { return row; } //in the array, NOT in pixels
 		int Col() { return col; }
 		int pixelX() { return pixelx; }

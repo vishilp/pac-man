@@ -57,22 +57,44 @@ void Game::renderPacMan()
 
 }
 
+void Game::updatePacMan(int direction)
+{
+	for (int i = 0; i < TextureManager::SpriteWidth; i++)
+	{
+		player->movePacMan(RIGHT);
+		renderPacMan();
+		SDL_RenderPresent(renderer);
+		//renderer(); which one is smoother?
+	}
+	map->movePacMan(RIGHT, player->Row(), player->Col());
+}
+
 
 void Game::handleEvents() {
+
 	SDL_Event event;
 	SDL_PollEvent(&event);
+
 	switch (event.type) {
 		case SDL_QUIT:
 			isRunning = false;
 			break;
 		case SDL_KEYDOWN:
-			//switch event.key.keysym.sym = sdlk_right
-			for (int i = 0; i < TextureManager::SpriteWidth; i++)
+			switch (event.key.keysym.sym)
 			{
-				player->movePacMan();
-				render();
+				case SDLK_RIGHT:
+					updatePacMan(RIGHT);
+					break; 
+				case SDLK_LEFT:
+					updatePacMan(LEFT);
+					break;
+				case SDLK_UP:
+					updatePacMan(UP);
+					break;
+				case SDLK_DOWN:
+					updatePacMan(DOWN);
+					break;
 			}
-			map->movePacMan(RIGHT, player->Row(), player->Col());
 			// and then move his actual rows/cols
 		default:
 			break;

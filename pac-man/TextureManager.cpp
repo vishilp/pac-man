@@ -19,6 +19,9 @@ SDL_Rect* TextureManager::ReturnSpriteRect(int id)
 	int y = 0;
 	int temp = 0;
 
+	if (id > 48) //render black board
+		id = 45;
+
 	if (id < 17)
 	{
 		x = (2 * (id - 1)) + (16 * (id - 1));
@@ -43,3 +46,10 @@ SDL_Rect* TextureManager::ReturnSpriteRect(int id)
 		return &rect;
 	}
 }
+
+SDL_Rect* TextureManager::ReturnPacmanRect()
+{
+	SDL_Rect rect = { 0, 0, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
+	return &rect;
+}
+

@@ -1,9 +1,6 @@
 #include "Game.h"
-#include "TextureManager.h"
-#include "Board.h"
 
-Board* map = new Board();
-SDL_Texture* wallsheet;
+
 
 Game::Game() {}
 Game::~Game() {}
@@ -23,6 +20,8 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height)
 	}
 	else
 		isRunning = false;
+	map = new Board();
+	player = new PacMan(0, 0);
 
 	
 }
@@ -35,11 +34,25 @@ void Game::loadBoard() {
 		for (int j = 0; j < map->height; j++)
 		{
 			int walltype = map->board1[j][i];
-			SDL_Rect dest = { i * TextureManager::SpriteWidth, j*TextureManager::SpriteHeight, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
-			SDL_RenderCopy(renderer, wallsheet, TextureManager::ReturnSpriteRect(walltype), &dest);
+			SDL_Rect dest = { i * TextureManager::SpriteWidth, j * TextureManager::SpriteHeight, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
+			SDL_Rect* spriterect = TextureManager::ReturnSpriteRect(walltype);
+			if (walltype == 46) //for dots
+			{
+				Dot dot = Dot(renderer, wallsheet, spriterect, &dest);
+				continue;
+			}
+			else
+				SDL_RenderCopy(renderer, wallsheet, spriterect, &dest);
 		}
 
 	}
+	if (player->isAlive())
+	{
+		SDL_Texture* pacman = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
+		SDL_Rect spawnpoint = { 16, 16, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
+		SDL_RenderCopy(renderer, pacman, TextureManager::ReturnPacmanRect(), &spawnpoint);
+	}
+
 }
 
 
@@ -73,6 +86,7 @@ void Game::clean() {
 	IMG_Quit();
 	SDL_Quit();
 	delete map;
+	delete player;
 }
 
 bool Game::running() { return isRunning; }

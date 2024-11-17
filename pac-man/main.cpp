@@ -5,7 +5,7 @@
 
 
 const int SCREEN_WIDTH = 448;
-const int SCREEN_HEIGHT = 640;
+const int SCREEN_HEIGHT = 496;
 
 Game* game = nullptr;
 
@@ -17,7 +17,6 @@ int main(){
 
 	game = new Game();
 	game->init("Pac-Man", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT);
-	game->loadBoard();
 
 	while (game->running())
 	{
@@ -29,7 +28,6 @@ int main(){
 	game->clean();
 	delete game;
 
-	//board and sprites scaled to 150%
 
 	return 0;
 };

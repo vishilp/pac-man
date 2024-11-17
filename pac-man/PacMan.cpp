@@ -6,11 +6,29 @@ PacMan::PacMan(int r, int c)
 	col = c;
 	pixelx = col * 16;
 	pixely = row * 16;
+	direction = 0;
+}
+
+void PacMan::setDirection(int dir)
+{
+	direction = dir;
+}
+
+int PacMan::getDirection()
+{
+	return direction;
 }
 
 void PacMan::movePacMan(int dir)
 {
-	pixelx++;
+	if (dir==RIGHT)
+		pixelx++;
+}
+
+void PacMan::updateRowsorCols(int dir)
+{
+	if (dir == RIGHT)
+		col += 1;
 }
 
 PacMan::~PacMan()

@@ -1,5 +1,6 @@
 #pragma once
 #include "globals.h"
+#include "PacMan.h"
 
 //board is an array because no need for dynamic reallocation
 
@@ -14,6 +15,7 @@ class Board {
 		int width = 28;
 
 		void movePacMan(int dir, int x, int y);
+		bool isValidMove(PacMan* pac);
 
 		int board1[31][28] = { //31 rows, 28 col
 		{2, 11, 11, 11, 11, 11, 11, 11, 11,11, 11, 11, 11,39, 40, 11, 11,11, 11, 11, 11,11, 11, 11, 11,11, 11, 1},

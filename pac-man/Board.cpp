@@ -1,5 +1,16 @@
 #include "Board.h"
 
+bool Board::isValidMove(PacMan* pac)
+{
+	int dir = pac->getDirection();
+	if (dir == RIGHT)
+	{
+		if (board1[pac->Row()][pac->Col() + 1] == 46)
+			return true;
+	}
+	return false;
+}
+
 void Board::movePacMan(int dir, int row, int col)
 {
 
@@ -10,3 +21,4 @@ void Board::movePacMan(int dir, int row, int col)
 	}
 		return;
 }
+

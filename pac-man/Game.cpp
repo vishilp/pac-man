@@ -59,15 +59,24 @@ void Game::renderPacMan()
 
 void Game::updatePacMan(int direction)
 {
-	for (int i = 0; i < TextureManager::SpriteWidth; i++)
+	if (direction == RIGHT)
 	{
-		player->movePacMan(RIGHT);
-		renderPacMan();
-		SDL_RenderPresent(renderer);
-		//renderer(); which one is smoother?
+		//GET THIS TO KEEP MOVING UNTIL WALL OR DIR CHANGE
+		if (map->isValidMove(player))
+		{
+			for (int i = 0; i < TextureManager::SpriteWidth; i++)
+			{
+					player->movePacMan(RIGHT);
+					renderPacMan();
+					SDL_RenderPresent(renderer); //renderer() if this doesn't work
+			}
+			map->movePacMan(RIGHT, player->Row(), player->Col());
+			player->updateRowsorCols(RIGHT);
+		}
+
 	}
-	map->movePacMan(RIGHT, player->Row(), player->Col());
 }
+
 
 
 void Game::handleEvents() {
@@ -83,19 +92,22 @@ void Game::handleEvents() {
 			switch (event.key.keysym.sym)
 			{
 				case SDLK_RIGHT:
+					player->setDirection(RIGHT);
 					updatePacMan(RIGHT);
 					break; 
 				case SDLK_LEFT:
+					player->setDirection(LEFT);
 					updatePacMan(LEFT);
 					break;
 				case SDLK_UP:
+					player->setDirection(UP);
 					updatePacMan(UP);
 					break;
 				case SDLK_DOWN:
+					player->setDirection(DOWN);
 					updatePacMan(DOWN);
 					break;
 			}
-			// and then move his actual rows/cols
 		default:
 			break;
 	}

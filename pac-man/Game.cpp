@@ -49,7 +49,7 @@ void Game::loadBoard() {
 	if (player->isAlive())
 	{
 		SDL_Texture* pacman = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
-		SDL_Rect spawnpoint = { 16, 16, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
+		SDL_Rect spawnpoint = { 16*player->posX(), 16 * player->posY(), TextureManager::SpriteWidth, TextureManager::SpriteHeight};
 		SDL_RenderCopy(renderer, pacman, TextureManager::ReturnPacmanRect(), &spawnpoint);
 	}
 
@@ -66,10 +66,12 @@ void Game::handleEvents() {
 		default:
 			break;
 	}
+
+
 }
 
 void Game::update() {
-
+	player->movePacMan();
 }
 
 void Game::render() {

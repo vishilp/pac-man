@@ -6,6 +6,11 @@ PacMan::PacMan(int x, int y)
 	posy = y;
 }
 
+void PacMan::movePacMan()
+{
+	posx += 1;
+}
+
 PacMan::~PacMan()
 {
 

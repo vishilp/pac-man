@@ -51,6 +51,8 @@ void Game::loadBoard() {
 
 void Game::renderPacMan()
 {
+	SDL_RenderClear(renderer);
+	loadBoard();
 	SDL_Texture* pacman = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
 	SDL_Rect spawnpoint = { player->pixelX(), player->pixelY(), TextureManager::SpriteWidth, TextureManager::SpriteHeight};
 	SDL_RenderCopy(renderer, pacman, TextureManager::ReturnPacmanRect(), &spawnpoint);
@@ -62,7 +64,7 @@ void Game::updatePacMan(int direction)
 	if (direction == RIGHT)
 	{
 		//GET THIS TO KEEP MOVING UNTIL WALL OR DIR CHANGE
-		if (map->isValidMove(player))
+		while (map->isValidMove(player))
 		{
 			for (int i = 0; i < TextureManager::SpriteWidth; i++)
 			{

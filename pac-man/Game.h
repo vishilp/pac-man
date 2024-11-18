@@ -26,6 +26,7 @@ class Game {
 		bool running();
 		
 		SDL_Texture* wallsheet;
+		SDL_Texture* boardTexture;
 
 	private:
 		bool isRunning =false;

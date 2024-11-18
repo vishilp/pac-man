@@ -2,10 +2,9 @@
 #undef main
 
 #include "Game.h"
+#include "globals.h"
 
 
-const int SCREEN_WIDTH = 448;
-const int SCREEN_HEIGHT = 496;
 
 Game* game = nullptr;
 

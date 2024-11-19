@@ -23,12 +23,24 @@ void PacMan::movePacMan(int dir)
 {
 	if (dir==RIGHT)
 		pixelx++;
+	if (dir == LEFT)
+		pixelx--;
+	if (dir == UP)
+		pixely--;
+	if (dir == DOWN)
+		pixely++;
 }
 
 void PacMan::updateRowsorCols(int dir)
 {
 	if (dir == RIGHT)
 		col += 1;
+	if (dir == LEFT)
+		col -= 1;
+	if (dir == UP)
+		row-= 1;
+	if (dir == DOWN)
+		row += 1;
 }
 
 PacMan::~PacMan()

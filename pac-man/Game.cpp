@@ -22,7 +22,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height)
 
 	map = new Board();
 	wallsheet = TextureManager::LoadTexture("assets/walls.png", renderer);
-	loadBoard();
+	loadBoardTexture();
 
 	player = new PacMan(SPAWNROW,SPAWNCOL);
 
@@ -31,7 +31,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height)
 
 
 
-void Game::loadBoard() {
+void Game::loadBoardTexture() {
 
 	boardTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, SCREEN_WIDTH, SCREEN_HEIGHT);
 	SDL_SetRenderTarget(renderer, boardTexture);
@@ -68,29 +68,77 @@ void Game::renderPacMan()
 
 }
 
-void Game::updatePacMan(int direction)
+void Game::updatePacMan()
 {
-	int tiletype = 0;
-	if (direction == RIGHT)
-	{
-		//GET THIS TO KEEP MOVING UNTIL WALL OR DIR CHANGE
-		while (map->isValidMove(player))
-		{
-			for (int i = 0; i < TextureManager::SpriteWidth; i++)
-			{
-					SDL_RenderClear(renderer);
-					SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
-					player->movePacMan(RIGHT);
-					renderPacMan();
-					SDL_RenderPresent(renderer); //renderer() if this doesn't work
-			}
-			tiletype = map->movePacMan(RIGHT, player->Row(), player->Col());
-			if (tiletype ==46)
-				loadBoard();
-			player->updateRowsorCols(RIGHT);
-		}
 
+	//only make him change if valid dir change
+	int tiletype = 0;
+	if (!map->isValidMove(player))
+		return;
+	if (player->getDirection() == RIGHT)
+	{
+		for (int i = 0; i < TextureManager::SpriteWidth; i++)
+		{
+			SDL_RenderClear(renderer);
+			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
+			player->movePacMan(RIGHT);
+			renderPacMan();
+			SDL_RenderPresent(renderer); //renderer() if this doesn't work
+		}
+		tiletype = map->movePacMan(RIGHT, player->Row(), player->Col());
+		if (tiletype ==DOTTILE)
+			loadBoardTexture();
+		player->updateRowsorCols(RIGHT);
 	}
+
+	if (player->getDirection() == LEFT)
+	{
+		for (int i = 0; i < TextureManager::SpriteWidth; i++)
+		{
+			SDL_RenderClear(renderer);
+			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
+			player->movePacMan(LEFT);
+			renderPacMan();
+			SDL_RenderPresent(renderer); //renderer() if this doesn't work
+		}
+		tiletype = map->movePacMan(LEFT, player->Row(), player->Col());
+		if (tiletype == DOTTILE)
+			loadBoardTexture();
+		player->updateRowsorCols(LEFT);
+	}
+
+	if (player->getDirection() == UP)
+	{
+		for (int i = 0; i < TextureManager::SpriteWidth; i++)
+		{
+			SDL_RenderClear(renderer);
+			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
+			player->movePacMan(UP);
+			renderPacMan();
+			SDL_RenderPresent(renderer); //renderer() if this doesn't work
+		}
+		tiletype = map->movePacMan(UP, player->Row(), player->Col());
+		if (tiletype == DOTTILE)
+			loadBoardTexture();
+		player->updateRowsorCols(UP);
+	}
+
+	if (player->getDirection() == DOWN)
+	{
+		for (int i = 0; i < TextureManager::SpriteWidth; i++)
+		{
+			SDL_RenderClear(renderer);
+			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
+			player->movePacMan(DOWN);
+			renderPacMan();
+			SDL_RenderPresent(renderer); //renderer() if this doesn't work
+		}
+		tiletype = map->movePacMan(DOWN, player->Row(), player->Col());
+		if (tiletype == DOTTILE)
+			loadBoardTexture();
+		player->updateRowsorCols(DOWN);
+	}
+	
 }
 
 
@@ -109,19 +157,15 @@ void Game::handleEvents() {
 			{
 				case SDLK_RIGHT:
 					player->setDirection(RIGHT);
-					updatePacMan(RIGHT);
 					break; 
 				case SDLK_LEFT:
 					player->setDirection(LEFT);
-					updatePacMan(LEFT);
 					break;
 				case SDLK_UP:
 					player->setDirection(UP);
-					updatePacMan(UP);
 					break;
 				case SDLK_DOWN:
 					player->setDirection(DOWN);
-					updatePacMan(DOWN);
 					break;
 			}
 		default:
@@ -132,6 +176,7 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
+	updatePacMan();
 }
 
 void Game::render() {

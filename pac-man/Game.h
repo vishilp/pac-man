@@ -32,6 +32,7 @@ class Game {
 		SDL_Texture* wallsheet;
 		SDL_Texture* boardTexture;
 		SDL_Texture* spritesheet;
+		SDL_Texture* blinkyTexture;
 
 	private:
 		bool isRunning =false;

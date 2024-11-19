@@ -2,6 +2,7 @@
 
 Ghost::Ghost(int r, int c, SDL_Renderer* renderer, SDL_Texture* spritesheet)
 {
+	alive = true;
 	row = r;
 	col = c;
 	pixelx = col * 16;

@@ -19,7 +19,6 @@ class Game {
 		void loadBoardTexture(); 
 		void updatePacMan();
 
-		void renderGhosts();
 		void updateGhosts();
 
 		void handleEvents();

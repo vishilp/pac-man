@@ -76,7 +76,7 @@ void Game::updatePacMan()
 			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
 			player->movePacMan(RIGHT);
 			player->renderPacMan();
-			renderGhosts();
+			blinky->renderGhost();  //CHANGE TO ARRAY OF GHOSTS LATERRRRRRRRRRRR
 			SDL_RenderPresent(renderer); 
 		}
 		tiletype = map->movePacMan(RIGHT, player->Row(), player->Col());
@@ -136,11 +136,7 @@ void Game::updatePacMan()
 }
 
 
-void Game::renderGhosts()
-{
-	SDL_Rect location = { blinky->pixelX(), blinky->pixelY(), TextureManager::SpriteWidth, TextureManager::SpriteHeight };
-	SDL_RenderCopy(renderer, spritesheet, TextureManager::ReturnBlinkyRect(), &location);
-}
+
 
 void Game::updateGhosts()
 {
@@ -203,7 +199,7 @@ void Game::render() {
 	//add stuff for rendering
 	SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
 	player->renderPacMan();
-	renderGhosts();
+	blinky->renderGhost();
 	SDL_RenderPresent(renderer);
 }
 

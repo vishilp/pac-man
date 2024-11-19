@@ -1,6 +1,7 @@
 #pragma once
 #include "globals.h"
 #include <SDL.h>
+#include "TextureManager.h"
 
 class Ghost {
 	public:
@@ -15,9 +16,11 @@ class Ghost {
 		int pixelY() { return pixely; }
 		int ghostMode() { return mode; }
 		void virtual renderGhost() {} //will be overridden by every ghost
+		SDL_Renderer* ren = nullptr;
+		SDL_Texture* sprites = nullptr;
 
 	private:
-		bool alive = true;
+		bool alive;
 		int row;
 		int col;
 		float pixelx;
@@ -25,7 +28,5 @@ class Ghost {
 		int direction;
 		int mode;  //chase, scatter, killable
 
-		SDL_Renderer* ren = nullptr;
-		SDL_Texture* sprites = nullptr;
 
 };

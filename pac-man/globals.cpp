@@ -1,6 +1,7 @@
 #include "globals.h"
 
 int PACMAN = 100;
+int BLINKY = 101;
 int DOTTILE = 46;
 int LEFT = 1;
 int RIGHT = 2;

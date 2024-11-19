@@ -1,7 +1,8 @@
 #pragma once
 
 
-extern int PACMAN; //extern to prevent multiple declarations 
+extern int PACMAN; //extern to prevent multiple declarations
+extern int BLINKY;
 extern int DOTTILE;
 extern int SPAWNCOL;
 extern int SPAWNROW;

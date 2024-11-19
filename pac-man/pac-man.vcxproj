@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Blinky.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Dot.cpp" />
     <ClCompile Include="Ghost.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Blinky.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Dot.h" />
     <ClInclude Include="Ghost.h" />

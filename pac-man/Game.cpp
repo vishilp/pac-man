@@ -24,7 +24,9 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height)
 	wallsheet = TextureManager::LoadTexture("assets/walls.png", renderer);
 	loadBoardTexture();
 
+	spritesheet = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
 	player = new PacMan(SPAWNROW,SPAWNCOL);
+	blinky = new Blinky();
 
 	
 }
@@ -62,16 +64,13 @@ void Game::loadBoardTexture() {
 
 void Game::renderPacMan()
 {
-	pacman = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
 	SDL_Rect spawnpoint = { player->pixelX(), player->pixelY(), TextureManager::SpriteWidth, TextureManager::SpriteHeight};
-	SDL_RenderCopy(renderer, pacman, TextureManager::ReturnPacmanRect(), &spawnpoint);
+	SDL_RenderCopy(renderer, spritesheet, TextureManager::ReturnPacmanRect(), &spawnpoint);
 
 }
 
 void Game::updatePacMan()
 {
-
-	//only make him change if valid dir change
 	int tiletype = 0;
 	if (!map->isValidMove(player))
 		return;
@@ -142,6 +141,11 @@ void Game::updatePacMan()
 }
 
 
+void Game::renderGhosts()
+{
+
+}
+
 
 void Game::handleEvents() {
 
@@ -208,6 +212,7 @@ void Game::clean() {
 	SDL_Quit();
 	delete map;
 	delete player;
+	delete blinky;
 }
 
 bool Game::running() { return isRunning; }

@@ -6,6 +6,7 @@
 #include "Board.h"
 #include "Dot.h"
 #include "globals.h"
+#include "Blinky.h"
 
 class Game {
 	
@@ -19,6 +20,8 @@ class Game {
 		void renderPacMan();
 		void updatePacMan();
 
+		void renderGhosts();
+
 		void handleEvents();
 		void update();
 		void render();
@@ -27,7 +30,7 @@ class Game {
 		
 		SDL_Texture* wallsheet;
 		SDL_Texture* boardTexture;
-		SDL_Texture* pacman;
+		SDL_Texture* spritesheet;
 
 	private:
 		bool isRunning =false;
@@ -35,5 +38,6 @@ class Game {
 		SDL_Renderer* renderer =nullptr;
 		PacMan* player = nullptr;
 		Board* map = nullptr;
+		Blinky* blinky = nullptr;
 };
 

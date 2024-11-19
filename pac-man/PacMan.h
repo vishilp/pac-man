@@ -4,11 +4,11 @@
 #include "TextureManager.h"
 #include "globals.h"
 
-class PacMan {
+class PacMan{
 	public:
 		PacMan(int row, int col); //how does inheritance work with constructors?
 		~PacMan();
-		bool isAlive();
+		bool isAlive() { return alive; }
 		void movePacMan(int dir); //in pixels
 		void updateRowsorCols(int dir); 
 		int Row() { return row; } //in the array, NOT in pixels

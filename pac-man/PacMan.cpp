@@ -48,4 +48,3 @@ PacMan::~PacMan()
 
 }
 
-bool PacMan::isAlive() { return alive; }

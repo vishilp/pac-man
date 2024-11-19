@@ -29,6 +29,8 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height)
 	
 }
 
+
+
 void Game::loadBoard() {
 
 	boardTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -55,9 +57,11 @@ void Game::loadBoard() {
 	SDL_SetRenderTarget(renderer, NULL);
 }
 
+
+
 void Game::renderPacMan()
 {
-	SDL_Texture* pacman = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
+	pacman = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
 	SDL_Rect spawnpoint = { player->pixelX(), player->pixelY(), TextureManager::SpriteWidth, TextureManager::SpriteHeight};
 	SDL_RenderCopy(renderer, pacman, TextureManager::ReturnPacmanRect(), &spawnpoint);
 
@@ -72,11 +76,14 @@ void Game::updatePacMan(int direction)
 		{
 			for (int i = 0; i < TextureManager::SpriteWidth; i++)
 			{
+					SDL_RenderClear(renderer);
+					SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
 					player->movePacMan(RIGHT);
 					renderPacMan();
 					SDL_RenderPresent(renderer); //renderer() if this doesn't work
 			}
 			map->movePacMan(RIGHT, player->Row(), player->Col());
+			loadBoard();
 			player->updateRowsorCols(RIGHT);
 		}
 

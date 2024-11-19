@@ -27,6 +27,7 @@ class Game {
 		
 		SDL_Texture* wallsheet;
 		SDL_Texture* boardTexture;
+		SDL_Texture* pacman;
 
 	private:
 		bool isRunning =false;

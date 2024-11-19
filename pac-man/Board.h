@@ -14,7 +14,7 @@ class Board {
 		int height = 31;
 		int width = 28;
 
-		void movePacMan(int dir, int x, int y);
+		void movePacMan(int dir, int x, int y); //maybe set to int and return 0 if no dot change on board
 		bool isValidMove(PacMan* pac);
 
 		int board1[31][28] = { //31 rows, 28 col

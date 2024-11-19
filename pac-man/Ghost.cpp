@@ -1,12 +1,14 @@
 #include "Ghost.h"
 
-Ghost::Ghost(int r, int c)
+Ghost::Ghost(int r, int c, SDL_Renderer* renderer, SDL_Texture* spritesheet)
 {
 	row = r;
 	col = c;
 	pixelx = col * 16;
 	pixely = row * 16;
 	direction = 0;
+	ren = renderer;
+	sprites = spritesheet;
 }
 bool Ghost::isAlive() { return alive; }
 int Ghost::getRow() { return row; }

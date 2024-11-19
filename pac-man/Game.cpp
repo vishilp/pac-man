@@ -26,7 +26,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height)
 
 	spritesheet = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
 	player = new PacMan(SPAWNROW,SPAWNCOL, renderer, spritesheet);
-	blinky = new Blinky(11,14);
+	blinky = new Blinky(11,14, renderer, spritesheet);
 
 	
 }

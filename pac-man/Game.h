@@ -7,6 +7,7 @@
 #include "Dot.h"
 #include "globals.h"
 #include "Blinky.h"
+#include "Pinky.h"
 
 class Game {
 	
@@ -37,6 +38,7 @@ class Game {
 		SDL_Renderer* renderer =nullptr;
 		PacMan* player = nullptr;
 		Board* map = nullptr;
-		Blinky* blinky = nullptr;
+		int ghostcount = 2;
+		Ghost* ghosts[2];
 };
 

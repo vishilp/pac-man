@@ -26,7 +26,8 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height)
 
 	spritesheet = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
 	player = new PacMan(SPAWNROW,SPAWNCOL, renderer, spritesheet);
-	blinky = new Blinky(11,14, renderer, spritesheet);
+	ghosts[0] = new Blinky(11,14, renderer, spritesheet);
+	ghosts[1] = new Pinky(14, 14, renderer, spritesheet);
 
 	
 }
@@ -76,7 +77,8 @@ void Game::updatePacMan()
 			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
 			player->movePacMan(RIGHT);
 			player->renderPacMan();
-			blinky->renderGhost();  //CHANGE TO ARRAY OF GHOSTS LATERRRRRRRRRRRR
+			for (int i = 0; i < ghostcount; i++)
+				ghosts[i]->renderGhost();
 			SDL_RenderPresent(renderer); 
 		}
 		tiletype = map->movePacMan(RIGHT, player->Row(), player->Col());
@@ -199,7 +201,8 @@ void Game::render() {
 	//add stuff for rendering
 	SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
 	player->renderPacMan();
-	blinky->renderGhost();
+	for (int i = 0; i < ghostcount; i++)
+		ghosts[i]->renderGhost();
 	SDL_RenderPresent(renderer);
 }
 
@@ -211,7 +214,8 @@ void Game::clean() {
 	SDL_Quit();
 	delete map;
 	delete player;
-	delete blinky;
+	for (int i = 0; i < ghostcount; i++)
+		delete ghosts[i];
 }
 
 bool Game::running() { return isRunning; }

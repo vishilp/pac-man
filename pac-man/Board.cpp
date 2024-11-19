@@ -11,14 +11,15 @@ bool Board::isValidMove(PacMan* pac)
 	return false;
 }
 
-void Board::movePacMan(int dir, int row, int col)
+int Board::movePacMan(int dir, int row, int col)
 {
-
+	int temp = 0;
 	if (dir == RIGHT)
 	{
-		board1[row][col] = 45;
+		board1[row][col] = 45; //set tile that pacman was on to empty
+		temp = board1[row][col + 1];
 		board1[row][col+1] = PACMAN;
 	}
-		return;
+		return temp;
 }
 

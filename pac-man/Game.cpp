@@ -59,6 +59,7 @@ void Game::loadBoard() {
 
 
 
+
 void Game::renderPacMan()
 {
 	pacman = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
@@ -69,6 +70,7 @@ void Game::renderPacMan()
 
 void Game::updatePacMan(int direction)
 {
+	int tiletype = 0;
 	if (direction == RIGHT)
 	{
 		//GET THIS TO KEEP MOVING UNTIL WALL OR DIR CHANGE
@@ -82,8 +84,9 @@ void Game::updatePacMan(int direction)
 					renderPacMan();
 					SDL_RenderPresent(renderer); //renderer() if this doesn't work
 			}
-			map->movePacMan(RIGHT, player->Row(), player->Col());
-			loadBoard();
+			tiletype = map->movePacMan(RIGHT, player->Row(), player->Col());
+			if (tiletype ==46)
+				loadBoard();
 			player->updateRowsorCols(RIGHT);
 		}
 

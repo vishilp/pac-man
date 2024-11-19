@@ -1,8 +1,9 @@
 #pragma once
 #include "Ghost.h"
 
-class Blinky : Ghost
+class Blinky : public Ghost
 {
 	public:
-		Blinky();
+		Blinky(int r, int c) : Ghost(r, c) {}
+		
 };

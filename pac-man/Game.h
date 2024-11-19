@@ -21,6 +21,7 @@ class Game {
 		void updatePacMan();
 
 		void renderGhosts();
+		void updateGhosts();
 
 		void handleEvents();
 		void update();

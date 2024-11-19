@@ -53,3 +53,9 @@ SDL_Rect* TextureManager::ReturnPacmanRect()
 	return &rect;
 }
 
+SDL_Rect* TextureManager::ReturnBlinkyRect()
+{
+	SDL_Rect rect = { 2, 62, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
+	return &rect;
+}
+

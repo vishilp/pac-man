@@ -12,6 +12,7 @@ class TextureManager
 		//calling it static allows for it to be called without needing a texturemanager obj
 		static SDL_Rect* ReturnSpriteRect(int id);
 		static SDL_Rect* ReturnPacmanRect();
+		static SDL_Rect* ReturnBlinkyRect();
 
 		const static int SpriteHeight = 16;
 		const static int SpriteWidth = 16;

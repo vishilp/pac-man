@@ -26,7 +26,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height)
 
 	spritesheet = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
 	player = new PacMan(SPAWNROW,SPAWNCOL);
-	blinky = new Blinky();
+	blinky = new Blinky(10,15);
 
 	
 }
@@ -143,6 +143,12 @@ void Game::updatePacMan()
 
 void Game::renderGhosts()
 {
+	SDL_Rect location = { blinky->pixelX(), blinky->pixelY(), TextureManager::SpriteWidth, TextureManager::SpriteHeight };
+	SDL_RenderCopy(renderer, spritesheet, TextureManager::ReturnBlinkyRect(), &location);
+}
+
+void Game::updateGhosts()
+{
 
 }
 
@@ -194,12 +200,14 @@ void Game::handleEvents() {
 
 void Game::update() {
 	updatePacMan();
+	updateGhosts();
 }
 
 void Game::render() {
 	SDL_RenderClear(renderer);
 	//add stuff for rendering
 	SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
+	renderGhosts();
 	renderPacMan();
 	SDL_RenderPresent(renderer);
 }

@@ -155,6 +155,7 @@
     <ClCompile Include="globals.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PacMan.cpp" />
+    <ClCompile Include="Pinky.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +166,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="PacMan.h" />
+    <ClInclude Include="Pinky.h" />
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

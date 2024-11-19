@@ -147,6 +147,7 @@ void Game::handleEvents() {
 
 	SDL_Event event;
 	SDL_PollEvent(&event);
+	int currentdir = player->getDirection();
 
 	switch (event.type) {
 		case SDL_QUIT:
@@ -156,17 +157,29 @@ void Game::handleEvents() {
 			switch (event.key.keysym.sym)
 			{
 				case SDLK_RIGHT:
+				{
 					player->setDirection(RIGHT);
-					break; 
+					if (!map->isValidMove(player))
+						player->setDirection(currentdir);
+				}break;
 				case SDLK_LEFT:
+				{
 					player->setDirection(LEFT);
-					break;
+					if (!map->isValidMove(player))
+						player->setDirection(currentdir);
+				}break;
 				case SDLK_UP:
+				{
 					player->setDirection(UP);
-					break;
+					if (!map->isValidMove(player))
+						player->setDirection(currentdir);
+				}break;
 				case SDLK_DOWN:
+				{
 					player->setDirection(DOWN);
-					break;
+					if (!map->isValidMove(player))
+						player->setDirection(currentdir);
+				}break;
 			}
 		default:
 			break;

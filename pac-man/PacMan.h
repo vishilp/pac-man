@@ -17,13 +17,14 @@ class PacMan {
 		int pixelY() { return pixely; }
 		void setDirection(int dir);
 		int getDirection();
+		float pacSpeed = 0.1f;
 
 	private:
 		bool alive = true;
 		int row;
 		int col;
-		int pixelx;
-		int pixely;
+		float pixelx;
+		float pixely;
 		int direction;
 };
 

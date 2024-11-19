@@ -21,14 +21,14 @@ int PacMan::getDirection()
 
 void PacMan::movePacMan(int dir)
 {
-	if (dir==RIGHT)
-		pixelx++;
+	if (dir == RIGHT)
+		pixelx += pacSpeed;
 	if (dir == LEFT)
-		pixelx--;
+		pixelx-= pacSpeed;
 	if (dir == UP)
-		pixely--;
+		pixely-= pacSpeed;
 	if (dir == DOWN)
-		pixely++;
+		pixely+= pacSpeed;
 }
 
 void PacMan::updateRowsorCols(int dir)

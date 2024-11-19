@@ -77,7 +77,7 @@ void Game::updatePacMan()
 		return;
 	if (player->getDirection() == RIGHT)
 	{
-		for (int i = 0; i < TextureManager::SpriteWidth; i++)
+		for (int i = 0; i < (TextureManager::SpriteWidth)/player->pacSpeed; i++)
 		{
 			SDL_RenderClear(renderer);
 			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
@@ -93,7 +93,7 @@ void Game::updatePacMan()
 
 	if (player->getDirection() == LEFT)
 	{
-		for (int i = 0; i < TextureManager::SpriteWidth; i++)
+		for (int i = 0; i < TextureManager::SpriteWidth / player->pacSpeed; i++)
 		{
 			SDL_RenderClear(renderer);
 			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
@@ -109,7 +109,7 @@ void Game::updatePacMan()
 
 	if (player->getDirection() == UP)
 	{
-		for (int i = 0; i < TextureManager::SpriteWidth; i++)
+		for (int i = 0; i < TextureManager::SpriteWidth / player->pacSpeed; i++)
 		{
 			SDL_RenderClear(renderer);
 			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
@@ -125,7 +125,7 @@ void Game::updatePacMan()
 
 	if (player->getDirection() == DOWN)
 	{
-		for (int i = 0; i < TextureManager::SpriteWidth; i++)
+		for (int i = 0; i < TextureManager::SpriteWidth / player->pacSpeed; i++)
 		{
 			SDL_RenderClear(renderer);
 			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);

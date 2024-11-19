@@ -17,7 +17,6 @@ class Game {
 		void init(const char* title, int xpos, int ypos, int width, int height);
 
 		void loadBoardTexture(); 
-		void renderPacMan();
 		void updatePacMan();
 
 		void renderGhosts();

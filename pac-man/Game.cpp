@@ -25,7 +25,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height)
 	loadBoardTexture();
 
 	spritesheet = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
-	player = new PacMan(SPAWNROW,SPAWNCOL);
+	player = new PacMan(SPAWNROW,SPAWNCOL, renderer, spritesheet);
 	blinky = new Blinky(11,14);
 
 	
@@ -62,12 +62,6 @@ void Game::loadBoardTexture() {
 
 
 
-void Game::renderPacMan()
-{
-	SDL_Rect spawnpoint = { player->pixelX(), player->pixelY(), TextureManager::SpriteWidth, TextureManager::SpriteHeight};
-	SDL_RenderCopy(renderer, spritesheet, TextureManager::ReturnPacmanRect(), &spawnpoint);
-
-}
 
 void Game::updatePacMan()
 {
@@ -81,8 +75,9 @@ void Game::updatePacMan()
 			SDL_RenderClear(renderer);
 			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
 			player->movePacMan(RIGHT);
-			renderPacMan();
-			SDL_RenderPresent(renderer); //renderer() if this doesn't work
+			player->renderPacMan();
+			renderGhosts();
+			SDL_RenderPresent(renderer); 
 		}
 		tiletype = map->movePacMan(RIGHT, player->Row(), player->Col());
 		if (tiletype ==DOTTILE)
@@ -97,8 +92,8 @@ void Game::updatePacMan()
 			SDL_RenderClear(renderer);
 			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
 			player->movePacMan(LEFT);
-			renderPacMan();
-			SDL_RenderPresent(renderer); //renderer() if this doesn't work
+			player->renderPacMan();
+			SDL_RenderPresent(renderer); 
 		}
 		tiletype = map->movePacMan(LEFT, player->Row(), player->Col());
 		if (tiletype == DOTTILE)
@@ -113,8 +108,8 @@ void Game::updatePacMan()
 			SDL_RenderClear(renderer);
 			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
 			player->movePacMan(UP);
-			renderPacMan();
-			SDL_RenderPresent(renderer); //renderer() if this doesn't work
+			player->renderPacMan();
+			SDL_RenderPresent(renderer); 
 		}
 		tiletype = map->movePacMan(UP, player->Row(), player->Col());
 		if (tiletype == DOTTILE)
@@ -129,8 +124,8 @@ void Game::updatePacMan()
 			SDL_RenderClear(renderer);
 			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
 			player->movePacMan(DOWN);
-			renderPacMan();
-			SDL_RenderPresent(renderer); //renderer() if this doesn't work
+			player->renderPacMan();
+			SDL_RenderPresent(renderer); 
 		}
 		tiletype = map->movePacMan(DOWN, player->Row(), player->Col());
 		if (tiletype == DOTTILE)
@@ -143,11 +138,8 @@ void Game::updatePacMan()
 
 void Game::renderGhosts()
 {
-	blinkyTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, TextureManager::SpriteWidth, TextureManager::SpriteHeight);
-	SDL_SetRenderTarget(renderer, blinkyTexture);
 	SDL_Rect location = { blinky->pixelX(), blinky->pixelY(), TextureManager::SpriteWidth, TextureManager::SpriteHeight };
 	SDL_RenderCopy(renderer, spritesheet, TextureManager::ReturnBlinkyRect(), &location);
-	SDL_SetRenderTarget(renderer, NULL);
 }
 
 void Game::updateGhosts()
@@ -210,9 +202,8 @@ void Game::render() {
 	SDL_RenderClear(renderer);
 	//add stuff for rendering
 	SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
-	renderPacMan();
+	player->renderPacMan();
 	renderGhosts();
-	SDL_RenderCopy(renderer, blinkyTexture, NULL, NULL);
 	SDL_RenderPresent(renderer);
 }
 

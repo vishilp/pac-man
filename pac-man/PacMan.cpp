@@ -1,12 +1,14 @@
 #include "PacMan.h"
 
-PacMan::PacMan(int r, int c)
+PacMan::PacMan(int r, int c, SDL_Renderer* renderer, SDL_Texture* spritesheet)
 {
 	row = r;
 	col = c;
 	pixelx = col * 16;
 	pixely = row * 16;
 	direction = 0;
+	ren = renderer;
+	sprites = spritesheet;
 }
 
 void PacMan::setDirection(int dir)
@@ -41,6 +43,12 @@ void PacMan::updateRowsorCols(int dir)
 		row-= 1;
 	if (dir == DOWN)
 		row += 1;
+}
+
+void PacMan::renderPacMan()
+{
+	SDL_Rect spawnpoint = { pixelx, pixely, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
+	SDL_RenderCopy(ren, sprites, TextureManager::ReturnPacmanRect(), &spawnpoint);
 }
 
 PacMan::~PacMan()

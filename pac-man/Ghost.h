@@ -12,6 +12,8 @@ class Ghost {
 		void updateRowsorCols(int dir);
 		int pixelX() { return pixelx; }
 		int pixelY() { return pixely; }
+		int ghostMode() { return mode; }
+
 	private:
 		bool alive = true;
 		int row;
@@ -19,5 +21,6 @@ class Ghost {
 		float pixelx;
 		float pixely;
 		int direction;
+		int mode;
 
 };

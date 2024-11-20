@@ -149,10 +149,12 @@
   <ItemGroup>
     <ClCompile Include="Blinky.cpp" />
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Clyde.cpp" />
     <ClCompile Include="Dot.cpp" />
     <ClCompile Include="Ghost.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="globals.cpp" />
+    <ClCompile Include="Inky.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PacMan.cpp" />
     <ClCompile Include="Pinky.cpp" />
@@ -161,10 +163,12 @@
   <ItemGroup>
     <ClInclude Include="Blinky.h" />
     <ClInclude Include="Board.h" />
+    <ClInclude Include="Clyde.h" />
     <ClInclude Include="Dot.h" />
     <ClInclude Include="Ghost.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="globals.h" />
+    <ClInclude Include="Inky.h" />
     <ClInclude Include="PacMan.h" />
     <ClInclude Include="Pinky.h" />
     <ClInclude Include="TextureManager.h" />

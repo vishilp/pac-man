@@ -86,5 +86,8 @@
     <ClInclude Include="Clyde.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AStarSearch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

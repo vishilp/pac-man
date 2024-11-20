@@ -161,6 +161,7 @@
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AStarSearch.h" />
     <ClInclude Include="Blinky.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Clyde.h" />

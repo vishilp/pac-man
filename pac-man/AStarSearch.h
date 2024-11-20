@@ -14,7 +14,7 @@ struct Node
     int fCost;  //total cost
     Node* parent;
 
-    bool operator < (const Node& other)
+    bool operator < (const Node& other) const
     {//inverted the < bcuz we want to adapt the priority queue's max heap to be like a min-heap
         return fCost > other.fCost;
     }
@@ -57,9 +57,27 @@ std::vector<Node> findPath(Board* board, Node start, Node goal)
         for (const auto& dir : directions) {
             int newRow = current.row + dir.first;
             int newCol = current.col + dir.second;
+
+            //skip out of bounds
+            if (newRow <0 || newRow> board->height - 1 || newCol <0 || newCol > board->width - 1)
+                continue;
+
+            if (visited.count({ newRow, newCol }))  //skip already visited nodes
+                continue;
+
+            // calculate costs for the neighbor
+            Node neighbor(newRow, newCol);
+            neighbor.gCost = current.gCost + 1; // cost from start to this neighbor
+            neighbor.hCost = std::abs(goal.row - newRow) + std::abs(goal.col - newCol); 
+            neighbor.fCost = neighbor.gCost + neighbor.hCost; 
+            neighbor.parent = new Node(current); // Store parent to reconstruct path later
+
+            // Add the neighbor to the open set
+            openSet.push(neighbor);
         }
     }
-
+    // If no path found, return empty
+    return {};
 
 }
 

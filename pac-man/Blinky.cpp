@@ -12,6 +12,6 @@ void Blinky::updateGhost()
 	Node Pac(player->Row(), player->Col());
 	if (chaseMode())
 	{
-		findPath(map, Blinky, Pac);
+		//findPath(map, Blinky, Pac);
 	}
 }

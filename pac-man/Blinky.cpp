@@ -8,5 +8,8 @@ void Blinky::renderGhost()
 
 void Blinky::updateGhost()
 {
+	if (chaseMode())
+	{
 
+	}
 }

@@ -1,6 +1,6 @@
 #include "Ghost.h"
 
-Ghost::Ghost(int r, int c, SDL_Renderer* renderer, SDL_Texture* spritesheet)
+Ghost::Ghost(int r, int c, SDL_Renderer* renderer, SDL_Texture* spritesheet, PacMan* p)
 {
 	alive = true;
 	row = r;
@@ -10,6 +10,7 @@ Ghost::Ghost(int r, int c, SDL_Renderer* renderer, SDL_Texture* spritesheet)
 	direction = 0;
 	ren = renderer;
 	sprites = spritesheet;
+	player = p;
 }
 bool Ghost::isAlive() { return alive; }
 int Ghost::getRow() { return row; }

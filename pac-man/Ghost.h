@@ -2,10 +2,11 @@
 #include "globals.h"
 #include <SDL.h>
 #include "TextureManager.h"
+#include "PacMan.h"
 
 class Ghost {
 	public:
-		Ghost(int r, int c, SDL_Renderer* renderer, SDL_Texture* spritesheet);
+		Ghost(int r, int c, SDL_Renderer* renderer, SDL_Texture* spritesheet, PacMan* player);
 		bool isAlive();
 		int getRow(); //in the array, NOT in pixels
 		int getCol();
@@ -16,8 +17,10 @@ class Ghost {
 		int pixelY() { return pixely; }
 		int ghostMode() { return mode; }
 		void virtual renderGhost() {} //will be overridden by every ghost
+		void virtual updateGhost() {}
 		SDL_Renderer* ren = nullptr;
 		SDL_Texture* sprites = nullptr;
+		PacMan* player = nullptr;
 
 	private:
 		bool alive;

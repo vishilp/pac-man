@@ -4,6 +4,6 @@
 class Inky : public Ghost
 {
 public:
-	Inky(int r, int c, SDL_Renderer* renderer, SDL_Texture* spritesheet) : Ghost(r, c, renderer, spritesheet) {}
+	Inky(int r, int c, SDL_Renderer* renderer, SDL_Texture* spritesheet, PacMan* player) : Ghost(r, c, renderer, spritesheet, player) {}
 	void renderGhost() override;
 };

@@ -26,10 +26,10 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height)
 
 	spritesheet = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
 	player = new PacMan(SPAWNROW,SPAWNCOL, renderer, spritesheet);
-	ghosts[0] = new Blinky(11,14, renderer, spritesheet);
-	ghosts[1] = new Pinky(14, 14, renderer, spritesheet);
-	ghosts[2] = new Inky(14, 12, renderer, spritesheet);
-	ghosts[3] = new Clyde(14, 16, renderer, spritesheet);
+	ghosts[0] = new Blinky(11,14, renderer, spritesheet, player);
+	ghosts[1] = new Pinky(14, 14, renderer, spritesheet, player);
+	ghosts[2] = new Inky(14, 12, renderer, spritesheet, player);
+	ghosts[3] = new Clyde(14, 16, renderer, spritesheet, player);
 	
 }
 
@@ -96,6 +96,8 @@ void Game::updatePacMan()
 			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
 			player->movePacMan(LEFT);
 			player->renderPacMan();
+			for (int i = 0; i < ghostcount; i++)
+				ghosts[i]->renderGhost();
 			SDL_RenderPresent(renderer); 
 		}
 		tiletype = map->movePacMan(LEFT, player->Row(), player->Col());
@@ -112,6 +114,8 @@ void Game::updatePacMan()
 			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
 			player->movePacMan(UP);
 			player->renderPacMan();
+			for (int i = 0; i < ghostcount; i++)
+				ghosts[i]->renderGhost();
 			SDL_RenderPresent(renderer); 
 		}
 		tiletype = map->movePacMan(UP, player->Row(), player->Col());
@@ -128,6 +132,8 @@ void Game::updatePacMan()
 			SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
 			player->movePacMan(DOWN);
 			player->renderPacMan();
+			for (int i = 0; i < ghostcount; i++)
+				ghosts[i]->renderGhost();
 			SDL_RenderPresent(renderer); 
 		}
 		tiletype = map->movePacMan(DOWN, player->Row(), player->Col());

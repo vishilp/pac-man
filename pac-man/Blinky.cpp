@@ -8,8 +8,10 @@ void Blinky::renderGhost()
 
 void Blinky::updateGhost()
 {
+	Node Blinky(getRow(), getCol());
+	Node Pac(player->Row(), player->Col());
 	if (chaseMode())
 	{
-
+		findPath(map, Blinky, Pac);
 	}
 }

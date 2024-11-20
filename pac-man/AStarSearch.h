@@ -1,19 +1,66 @@
 #pragma once
 #include "Board.h"
+#include <vector>
+#include <queue>
+#include <set>
+
 struct Node
 {
-    int y;
-    int x;
-    int parentX;
-    int parentY;
-    float gCost;
-    float hCost;
-    float fCost;
+    Node(int r, int c) { row = r; col = c; }
+    int row;
+    int col;
+    int gCost;  //cost so far
+    int hCost;  // heuristic/ expected cost
+    int fCost;  //total cost
+    Node* parent;
+
+    bool operator < (const Node& other)
+    {//inverted the < bcuz we want to adapt the priority queue's max heap to be like a min-heap
+        return fCost > other.fCost;
+    }
 };
 
-inline bool operator < (const Node& lhs, const Node& rhs)
-{//We need to overload "<" to put our struct into a set
-    return lhs.fCost < rhs.fCost;
+
+
+std::vector<Node> findPath(Board* board, Node start, Node goal)
+{
+    std::priority_queue<Node> openSet; //which nodes to expand
+    std::set<std::pair<int, int>> visited;  //visited tiles
+    
+    //initialize the starting node
+    start.gCost = 0;
+    start.hCost = std::abs(goal.row - start.row) + std::abs(goal.col - start.col); // Manhattan distance
+    start.fCost = start.gCost + start.hCost;
+    openSet.push(start);
+
+    //start of A*
+    while (!openSet.empty())
+    {
+        Node current = openSet.top(); //should have the smallest f value due to the operator overload function
+        openSet.pop();
+
+        if (current.row == goal.row && current.col == goal.col) { //reconstruct path if reached goal
+            std::vector<Node> path;
+            Node* pathNode = &current;
+            while (pathNode != nullptr) {
+                path.push_back(*pathNode);
+                pathNode = pathNode->parent;
+            }
+            std::reverse(path.begin(), path.end());
+            return path;
+        }
+
+
+        visited.insert({ current.row, current.col });
+        //and now explore it's neighbors
+        std::vector<std::pair<int, int>> directions = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+        for (const auto& dir : directions) {
+            int newRow = current.row + dir.first;
+            int newCol = current.col + dir.second;
+        }
+    }
+
+
 }
 
 static bool isValid(int r, int c) { //check to make sure the row/col pair is a valid spot to move

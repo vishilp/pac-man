@@ -1,5 +1,6 @@
 #pragma once
 #include "Ghost.h"
+#include "AStarSearch.h"
 
 class Blinky : public Ghost
 {

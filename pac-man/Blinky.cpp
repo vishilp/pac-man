@@ -16,8 +16,39 @@ void Blinky::updateGhost()
 	if (chaseMode())
 	{
 		std::vector<Node> nodes = findPath(map, Blinky, Pac, &manager);
-		Node first = nodes[0];
-		setRow(first.row);
-		setCol(first.col);
+		translateNodeToDir(nodes[0]);
+		setRow(nodes[0].row);
+		setCol(nodes[0].col);
+	}
+}
+
+void Blinky::translateNodeToDir(Node node)
+{
+	int r = getRow();
+	int c = getCol();
+
+	if (node.row == r)  //if rows are same, clearly the ghost needs to move through cols
+	{
+		if (node.col == c + 1) {
+			setDirection(RIGHT);
+			return;
+		}
+		if (node.col == c - 1) {
+			setDirection(LEFT);
+			return;
+		}
+		
+	}
+
+	else
+	{
+		if (node.row == r + 1) {
+			setDirection(DOWN);
+			return;
+		}
+		if (node.row == r - 1) {
+			setDirection(UP);
+			return;
+		}
 	}
 }

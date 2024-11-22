@@ -19,6 +19,8 @@ class Ghost {
 		bool chaseMode() { return chasemode; }
 		void virtual renderGhost() {} //will be overridden by every ghost
 		void virtual updateGhost() {}
+		int getDirection() { return direction; }
+		void setDirection(int dir) {direction = dir;}
 		bool isOnPacMan();
 		SDL_Renderer* ren = nullptr;
 		SDL_Texture* sprites = nullptr;

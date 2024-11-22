@@ -25,7 +25,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height)
 	loadBoardTexture();
 
 	spritesheet = TextureManager::LoadTexture("assets/PacManSprites.png", renderer);
-	player = new PacMan(11,15, renderer, spritesheet);
+	player = new PacMan(SPAWNROW,SPAWNCOL, renderer, spritesheet);
 	ghosts[0] = new Blinky(11,14, renderer, spritesheet, player, map);
 	ghosts[1] = new Pinky(14, 14, renderer, spritesheet, player, map);
 	ghosts[2] = new Inky(14, 12, renderer, spritesheet, player, map);

@@ -34,7 +34,7 @@ struct NodeManager
     std::vector<Node*> trash;
 };
 
-static void PrintPath(const std::vector<Node>& path)
+static void PrintPath(const std::vector<Node>& path) //for testing purposes
 {
     for (const Node& node : path)
     {
@@ -103,4 +103,5 @@ static std::vector<Node> findPath(Board* board, Node start, Node goal, NodeManag
     return {};
 
 }
+
 

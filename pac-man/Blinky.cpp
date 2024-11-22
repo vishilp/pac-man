@@ -8,10 +8,15 @@ void Blinky::renderGhost()
 
 void Blinky::updateGhost()
 {
+	if (isOnPacMan())
+		return;
 	Node Blinky(getRow(), getCol());
 	Node Pac(player->Row(), player->Col());
 	if (chaseMode())
 	{
-		//findPath(map, Blinky, Pac);
+		std::vector<Node> nodes = findPath(map, Blinky, Pac);
+		Node first = nodes[0];
+		setRow(first.row);
+		setCol(first.col);
 	}
 }

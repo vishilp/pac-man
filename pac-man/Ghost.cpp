@@ -30,3 +30,10 @@ void Ghost::updateRowsorCols(int dir)
 	if (dir == DOWN)
 		row += 1;
 }
+
+bool Ghost::isOnPacMan()
+{
+	if (row == player->Row() && col == player->Col())
+		return true;
+	return false;
+}

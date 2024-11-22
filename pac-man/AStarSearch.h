@@ -22,6 +22,18 @@ struct Node
     }
 };
 
+struct NodeManager
+{
+    NodeManager() {}
+    ~NodeManager() {
+        for (auto node : trash) {
+            if (node != nullptr)
+                delete node;
+        }
+    }
+    std::vector<Node*> trash;
+};
+
 static void PrintPath(const std::vector<Node>& path)
 {
     for (const Node& node : path)
@@ -31,7 +43,7 @@ static void PrintPath(const std::vector<Node>& path)
     std::cout << std::endl;
 }
 
-static std::vector<Node> findPath(Board* board, Node start, Node goal)
+static std::vector<Node> findPath(Board* board, Node start, Node goal, NodeManager* manager)
 {
     std::priority_queue<Node> openSet; //which nodes to expand
     std::set<std::pair<int, int>> visited;  //visited tiles
@@ -81,6 +93,7 @@ static std::vector<Node> findPath(Board* board, Node start, Node goal)
             neighbor.hCost = std::abs(goal.row - newRow) + std::abs(goal.col - newCol);
             neighbor.fCost = neighbor.gCost + neighbor.hCost;
             neighbor.parent = new Node(current); // Store parent to reconstruct path later
+            manager->trash.push_back(neighbor.parent);
 
             // Add the neighbor to the open set
             openSet.push(neighbor);

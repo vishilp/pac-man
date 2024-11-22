@@ -10,11 +10,12 @@ void Blinky::updateGhost()
 {
 	if (isOnPacMan())
 		return;
+	NodeManager manager;
 	Node Blinky(getRow(), getCol());
 	Node Pac(player->Row(), player->Col());
 	if (chaseMode())
 	{
-		std::vector<Node> nodes = findPath(map, Blinky, Pac);
+		std::vector<Node> nodes = findPath(map, Blinky, Pac, &manager);
 		Node first = nodes[0];
 		setRow(first.row);
 		setCol(first.col);

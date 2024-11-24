@@ -49,8 +49,10 @@ bool PacMan::updateRowsorCols()
 {
 	int c = col;
 	int r = row;
-	col = pixelx / 16;
-	row = pixely / 16;
+	if (int(pixelx) % 16 == 0)
+		col = pixelx / 16;  
+	if (int(pixely) % 16 == 0)
+		row = pixely / 16;
 	if (r != row || c != col) //if old row/col was different, we updated them
 		return true;
 	return false;

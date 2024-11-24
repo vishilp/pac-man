@@ -153,6 +153,8 @@ void Game::updatePacMan()  //OLD FUNCTION, NO LONGER NECESSARY
 
 void Game::handleEvents() {
 
+	//maybe have a stack of inputs, with it being cleared after a few ms of delay
+
 	SDL_Event event;
 	SDL_PollEvent(&event);
 	int currentdir = player->getDirection();

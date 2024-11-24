@@ -20,11 +20,10 @@ class Game {
 		void init(const char* title, int xpos, int ypos, int width, int height);
 
 		void loadBoardTexture(); 
-		void updatePacMan();
-
-		void updateGhosts();
+		void updatePacMan(); //no longer necessary
 
 		void handleEvents();
+		void handlePacManMovement(int dir); //movement frame by frame
 		void update();
 		void render();
 		void clean(); 

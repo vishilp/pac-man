@@ -33,7 +33,7 @@ void PacMan::movePacMan(int dir)
 		pixely+= pacSpeed;
 }
 
-void PacMan::updateRowsorCols(int dir)
+/*void PacMan::updateRowsorCols(int dir)
 {
 	if (dir == RIGHT)
 		col += 1;
@@ -43,6 +43,17 @@ void PacMan::updateRowsorCols(int dir)
 		row-= 1;
 	if (dir == DOWN)
 		row += 1;
+} */ 
+
+bool PacMan::updateRowsorCols()
+{
+	int c = col;
+	int r = row;
+	col = pixelx / 16;
+	row = pixely / 16;
+	if (r != row || c != col) //if old row/col was different, we updated them
+		return true;
+	return false;
 }
 
 void PacMan::renderPacMan()

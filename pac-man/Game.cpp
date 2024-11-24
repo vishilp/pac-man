@@ -65,7 +65,7 @@ void Game::loadBoardTexture() {
 
 
 
-void Game::updatePacMan()
+void Game::updatePacMan()  //OLD FUNCTION, NO LONGER NECESSARY
 {
 	int tiletype = 0;
 	if (!map->isValidMove(player))
@@ -85,7 +85,7 @@ void Game::updatePacMan()
 		tiletype = map->movePacMan(RIGHT, player->Row(), player->Col());
 		if (tiletype ==DOTTILE)
 			loadBoardTexture();
-		player->updateRowsorCols(RIGHT);
+		//player->updateRowsorCols(RIGHT);
 		ghosts[0]->updateGhost();
 	}
 
@@ -104,7 +104,7 @@ void Game::updatePacMan()
 		tiletype = map->movePacMan(LEFT, player->Row(), player->Col());
 		if (tiletype == DOTTILE)
 			loadBoardTexture();
-		player->updateRowsorCols(LEFT);
+		//player->updateRowsorCols(LEFT);
 		ghosts[0]->updateGhost();
 	}
 
@@ -123,7 +123,7 @@ void Game::updatePacMan()
 		tiletype = map->movePacMan(UP, player->Row(), player->Col());
 		if (tiletype == DOTTILE)
 			loadBoardTexture();
-		player->updateRowsorCols(UP);
+		//player->updateRowsorCols(UP);
 		ghosts[0]->updateGhost();
 	}
 
@@ -142,19 +142,13 @@ void Game::updatePacMan()
 		tiletype = map->movePacMan(DOWN, player->Row(), player->Col());
 		if (tiletype == DOTTILE)
 			loadBoardTexture();
-		player->updateRowsorCols(DOWN);
+		//player->updateRowsorCols(DOWN);
 		ghosts[0]->updateGhost();
 	}
 	
 }
 
 
-
-
-void Game::updateGhosts()
-{
-
-}
 
 
 void Game::handleEvents() {
@@ -202,24 +196,45 @@ void Game::handleEvents() {
 
 }
 
+void Game::handlePacManMovement(int dir)
+{
+	int tiletype = 0;
+	if (!map->isValidMove(player))
+		return;
+	player->movePacMan(dir);
+	player->renderPacMan();
+	bool changed = player->updateRowsorCols();
+	if (changed)
+	{
+		switch (dir)
+		{
+			case 1: //LEFT
+				tiletype = map->movePacMan(LEFT, player->Row(), player->Col() + 1);
+				//pass in col()+1 bcuz pacmans cols were just decrememnted by 1 (to go left)
+				break;
+			case 2:   //RIGHT
+				tiletype = map->movePacMan(RIGHT, player->Row(), player->Col() - 1);
+				break;
+			case 3:   //UP
+				tiletype = map->movePacMan(UP, player->Row() + 1, player->Col());
+				break;
+			case 4:   //DOWN
+				tiletype = map->movePacMan(DOWN, player->Row() - 1, player->Col());
+				break;
+		}
+		if (tiletype == DOTTILE)
+			loadBoardTexture();
+	}
+}
+
 void Game::update() {
 	//updatePacMan();
 	//for (int i = 0; i < ghostcount; i++)
 		//ghosts[i]->updateGhost();
 
 	//need to update the ghost and pacman at the same time
-	int tiletype = 0;
-	if (!map->isValidMove(player))
-		return;
-	if (player->getDirection() == RIGHT)
-	{
-		//move him right one pixel (this will be called multiple times anyways), only update rows or cols when its possible
-		//move blinky in her desired direction one pixel at time
-		player->movePacMan(RIGHT);
-		player->renderPacMan();
-		//updated pacman function to check if pacman's pixel values should put him on a row/col
-	}
-	//do same thing for ghosts
+	handlePacManMovement(player->getDirection());
+	//do same thing for ghosts, only do A* when pacman is at new cell
 	
 }
 

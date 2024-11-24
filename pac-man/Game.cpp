@@ -86,8 +86,7 @@ void Game::updatePacMan()
 		if (tiletype ==DOTTILE)
 			loadBoardTexture();
 		player->updateRowsorCols(RIGHT);
-		for (int i = 0; i < ghostcount; i++)
-			ghosts[i]->updateGhost();
+		ghosts[0]->updateGhost();
 	}
 
 	if (player->getDirection() == LEFT)
@@ -106,6 +105,7 @@ void Game::updatePacMan()
 		if (tiletype == DOTTILE)
 			loadBoardTexture();
 		player->updateRowsorCols(LEFT);
+		ghosts[0]->updateGhost();
 	}
 
 	if (player->getDirection() == UP)
@@ -124,6 +124,7 @@ void Game::updatePacMan()
 		if (tiletype == DOTTILE)
 			loadBoardTexture();
 		player->updateRowsorCols(UP);
+		ghosts[0]->updateGhost();
 	}
 
 	if (player->getDirection() == DOWN)
@@ -142,6 +143,7 @@ void Game::updatePacMan()
 		if (tiletype == DOTTILE)
 			loadBoardTexture();
 		player->updateRowsorCols(DOWN);
+		ghosts[0]->updateGhost();
 	}
 	
 }
@@ -201,9 +203,24 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-	updatePacMan();
-	for (int i = 0; i < ghostcount; i++)
-		ghosts[i]->updateGhost();
+	//updatePacMan();
+	//for (int i = 0; i < ghostcount; i++)
+		//ghosts[i]->updateGhost();
+
+	//need to update the ghost and pacman at the same time
+	int tiletype = 0;
+	if (!map->isValidMove(player))
+		return;
+	if (player->getDirection() == RIGHT)
+	{
+		//move him right one pixel (this will be called multiple times anyways), only update rows or cols when its possible
+		//move blinky in her desired direction one pixel at time
+		player->movePacMan(RIGHT);
+		player->renderPacMan();
+		//updated pacman function to check if pacman's pixel values should put him on a row/col
+	}
+	//do same thing for ghosts
+	
 }
 
 void Game::render() {

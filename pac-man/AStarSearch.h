@@ -84,6 +84,9 @@ static std::vector<Node> findPath(Board* board, Node start, Node goal, NodeManag
             if (newRow <0 || newRow> board->height - 1 || newCol <0 || newCol > board->width - 1)
                 continue;
 
+            if (board->board1[newRow][newCol] < 45)
+                continue;
+
             if (visited.count({ newRow, newCol }))  //skip already visited nodes
                 continue;
 

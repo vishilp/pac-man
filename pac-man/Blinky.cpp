@@ -17,8 +17,14 @@ void Blinky::updateGhost()
 	{
 		std::vector<Node> nodes = findPath(map, Blinky, Pac, &manager);
 		translateNodeToDir(nodes[0]);
-		setRow(nodes[0].row);
-		setCol(nodes[0].col);
+		for (int i = 0; i < TextureManager::SpriteWidth / getSpeed(); i++)
+		{
+			moveGhost();
+			renderGhost();
+		}
+		updateRowsorCols(getDirection());
+
+
 	}
 }
 

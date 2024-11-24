@@ -19,6 +19,7 @@ class Ghost {
 		bool chaseMode() { return chasemode; }
 		void virtual renderGhost() {} //will be overridden by every ghost
 		void virtual updateGhost() {}
+		void moveGhost();
 		int getDirection() { return direction; }
 		void setDirection(int dir) {direction = dir;}
 		bool isOnPacMan();
@@ -26,6 +27,7 @@ class Ghost {
 		SDL_Texture* sprites = nullptr;
 		PacMan* player = nullptr;
 		Board* map = nullptr;
+		float getSpeed() { return speed; }
 
 	private:
 		bool alive;
@@ -35,6 +37,7 @@ class Ghost {
 		float pixely;
 		int direction;
 		bool chasemode = true;  //chase, scatter, killable
+		float speed = 0.025f;
 
 
 };

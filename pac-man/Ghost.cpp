@@ -37,3 +37,15 @@ bool Ghost::isOnPacMan()
 		return true;
 	return false;
 }
+
+void Ghost::moveGhost()
+{
+	if (direction == RIGHT)
+		pixelx += speed;
+	if (direction == LEFT)
+		pixelx -= speed;
+	if (direction == UP)
+		pixely -= speed;
+	if (direction == DOWN)
+		pixely += speed;
+}

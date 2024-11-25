@@ -9,32 +9,73 @@ PacMan::PacMan(int r, int c, SDL_Renderer* renderer, SDL_Texture* spritesheet)
 	direction = 0;
 	ren = renderer;
 	sprites = spritesheet;
-	switchablex = true;
-	switchabley = true;
+	queuedDirection = 0;
+	queuedFrames = 0;
 }
 
-void PacMan::setDirection(int dir)
+void PacMan::setQueuedDirection(int dir)
 {
-	if (dir == RIGHT || dir == LEFT)
+	queuedDirection = dir;
+	queuedFrames = 0;
+}
+
+void PacMan::setDirection()
+{
+	if (direction == 0) //for start of game
 	{
-		if (direction == RIGHT || direction == LEFT) //IF ALREADY MOVING ALONG X AXIS, ALLOW DIR SWAP IN X AXIS
-			direction = dir;
+		direction = queuedDirection;
+		queuedDirection = 0;
+		queuedFrames = 0;
+		return;
+	}
+	if (queuedFrames > 3 || queuedDirection ==0) { //3 frames of leeway, should be about 3 pixels (pacman moves 1 pixel per iteration)
+		queuedDirection = 0;
+		queuedFrames = 0;
+		return;
+	}
+
+	if (direction == RIGHT || direction == LEFT)
+	{
+		if (queuedDirection == RIGHT || queuedDirection == LEFT) //IF ALREADY MOVING ALONG X AXIS, ALLOW DIR SWAP IN X AXIS
+		{
+			direction = queuedDirection;
+			queuedDirection = 0;
+			queuedFrames = 0;
+			return;
+		}
+		else
+		{
+			if (fmod(pixelx, 16.0) == 0) {
+				direction = queuedDirection;
+				queuedDirection = 0;
+				queuedFrames = 0;
+				return;
+			}
+		}
+	}
+	if (direction == UP || direction == DOWN)
+	{
+		if (queuedDirection == UP || queuedDirection == DOWN) //IF ALREADY MOVING ALONG Y AXIS, ALLOW DIR SWAP IN X AXIS
+		{
+			direction = queuedDirection;
+			queuedDirection = 0;
+			queuedFrames = 0;
+			return;
+		}
 		else
 		{
 			if (fmod(pixely, 16.0) == 0)
-				direction = dir;
+			{
+				direction = queuedDirection;
+				queuedDirection = 0;
+				queuedFrames = 0;
+				return;
+			}
 		}
 	}
-	if (dir == UP || dir == DOWN)
-	{
-		if (direction == UP || direction == DOWN) //IF ALREADY MOVING ALONG Y AXIS, ALLOW DIR SWAP IN X AXIS
-			direction = dir;
-		else
-		{
-			if (fmod(pixelx, 16.0) == 0)
-				direction = dir;
-		}
-	}
+
+	queuedFrames++;  //if not valid move atm, increase queue frame number
+
 }
 
 int PacMan::getDirection()

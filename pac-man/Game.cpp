@@ -167,25 +167,17 @@ void Game::handleEvents() {
 			switch (event.key.keysym.sym)
 			{
 				case SDLK_RIGHT:
-				{
-					if (map->isValidMove(player, RIGHT))
-						player->setDirection(RIGHT);
-				}break;
+					player->setQueuedDirection(RIGHT);
+					break;
 				case SDLK_LEFT:
-				{
-					if (map->isValidMove(player, LEFT))
-						player->setDirection(LEFT);
-				}break;
+					player->setQueuedDirection(LEFT);
+					break;
 				case SDLK_UP:
-				{
-					if (map->isValidMove(player, UP))
-						player->setDirection(UP);
-				}break;
+					player->setQueuedDirection(UP);
+					break;
 				case SDLK_DOWN:
-				{
-					if (map->isValidMove(player, DOWN))
-						player->setDirection(DOWN);
-				}break;
+					player->setQueuedDirection(DOWN);
+					break;
 			}
 		default:
 			break;
@@ -194,11 +186,19 @@ void Game::handleEvents() {
 
 }
 
-void Game::handlePacManMovement(int dir)
+void Game::handlePacManMovement()
 {
-	int tiletype = 0;
+	if (map->isValidMove(player, player->getQueuedDirection()))  //if queued direction is valid move
+	{
+		player->setDirection(); //update direction based on queued actions
+	}
+
+	int dir = player->getDirection(); //keep going in original direction if its valid move
 	if (!map->isValidMove(player, dir))
 		return;
+	
+	int tiletype = 0;
+	
 	player->movePacMan(dir);
 	player->renderPacMan();
 	bool changed = player->updateRowsorCols();
@@ -226,12 +226,9 @@ void Game::handlePacManMovement(int dir)
 }
 
 void Game::update() {
-	//updatePacMan();
-	//for (int i = 0; i < ghostcount; i++)
-		//ghosts[i]->updateGhost();
-
 	//need to update the ghost and pacman at the same time
-	handlePacManMovement(player->getDirection());
+
+	handlePacManMovement();
 	//do same thing for ghosts, only do A* when pacman is at new cell
 	
 }

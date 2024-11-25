@@ -23,7 +23,7 @@ class Game {
 		void updatePacMan(); //no longer necessary
 
 		void handleEvents();
-		void handlePacManMovement(int dir); //movement frame by frame
+		void handlePacManMovement(); //movement frame by frame
 		void update();
 		void render();
 		void clean(); 

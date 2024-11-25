@@ -16,22 +16,22 @@ class PacMan{
 		int Col() { return col; }
 		float pixelX() { return pixelx; }
 		float pixelY() { return pixely; }
-		void setDirection(int dir);
+		void setDirection();
+		void setQueuedDirection(int dir);
 		int getDirection();
+		int getQueuedDirection() { return queuedDirection; }
 		void renderPacMan();
-		bool isSwitchableX() { return switchablex; }
-		bool isSwitchableY() {return switchabley;}
 		float pacSpeed = 1.0f;
 
 	private:
 		bool alive = true;
-		bool switchablex; //if his dir can be switched left or right
-		bool switchabley; 
 		int row;
 		int col;
 		float pixelx;
 		float pixely;
 		int direction;
+		int queuedDirection;
+		int queuedFrames;
 		SDL_Renderer* ren = nullptr;
 		SDL_Texture* sprites = nullptr;
 };

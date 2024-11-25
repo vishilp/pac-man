@@ -20,6 +20,7 @@ class PacMan{
 		void setQueuedDirection(int dir);
 		int getDirection();
 		int getQueuedDirection() { return queuedDirection; }
+		void incremementQueuedFrames() { queuedFrames++; }
 		void renderPacMan();
 		float pacSpeed = 1.0f;
 

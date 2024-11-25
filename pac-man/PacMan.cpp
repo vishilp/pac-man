@@ -28,7 +28,7 @@ void PacMan::setDirection()
 		queuedFrames = 0;
 		return;
 	}
-	if (queuedFrames > 3 || queuedDirection ==0) { //3 frames of leeway, should be about 3 pixels (pacman moves 1 pixel per iteration)
+	if (queuedFrames > 16 || queuedDirection ==0) { // 16frames of leeway, should be about 16 pixels (pacman moves 1 pixel per iteration)
 		queuedDirection = 0;
 		queuedFrames = 0;
 		return;

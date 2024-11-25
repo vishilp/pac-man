@@ -192,6 +192,10 @@ void Game::handlePacManMovement()
 	{
 		player->setDirection(); //update direction based on queued actions
 	}
+	else //increment queued frames
+	{
+		player->incremementQueuedFrames();
+	}
 
 	int dir = player->getDirection(); //keep going in original direction if its valid move
 	if (!map->isValidMove(player, dir))

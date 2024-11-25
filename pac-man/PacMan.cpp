@@ -9,11 +9,32 @@ PacMan::PacMan(int r, int c, SDL_Renderer* renderer, SDL_Texture* spritesheet)
 	direction = 0;
 	ren = renderer;
 	sprites = spritesheet;
+	switchablex = true;
+	switchabley = true;
 }
 
 void PacMan::setDirection(int dir)
 {
-	direction = dir;
+	if (dir == RIGHT || dir == LEFT)
+	{
+		if (direction == RIGHT || direction == LEFT) //IF ALREADY MOVING ALONG X AXIS, ALLOW DIR SWAP IN X AXIS
+			direction = dir;
+		else
+		{
+			if (fmod(pixely, 16.0) == 0)
+				direction = dir;
+		}
+	}
+	if (dir == UP || dir == DOWN)
+	{
+		if (direction == UP || direction == DOWN) //IF ALREADY MOVING ALONG Y AXIS, ALLOW DIR SWAP IN X AXIS
+			direction = dir;
+		else
+		{
+			if (fmod(pixelx, 16.0) == 0)
+				direction = dir;
+		}
+	}
 }
 
 int PacMan::getDirection()
@@ -49,12 +70,13 @@ bool PacMan::updateRowsorCols()
 {
 	int c = col;
 	int r = row;
-	if (int(pixelx) % 16 == 0)
-		col = pixelx / 16;  
-	if (int(pixely) % 16 == 0)
+	if (fmod(pixelx, 16.0) == 0)
+		col = pixelx / 16;
+	if (fmod(pixely, 16.0) == 0)
 		row = pixely / 16;
 	if (r != row || c != col) //if old row/col was different, we updated them
 		return true;
+	
 	return false;
 }
 

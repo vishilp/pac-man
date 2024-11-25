@@ -3,6 +3,7 @@
 #include <SDL_image.h>
 #include "TextureManager.h"
 #include "globals.h"
+#include <cmath>
 
 class PacMan{
 	public:
@@ -13,15 +14,19 @@ class PacMan{
 		bool updateRowsorCols(); 
 		int Row() { return row; } //in the array, NOT in pixels
 		int Col() { return col; }
-		int pixelX() { return pixelx; }
-		int pixelY() { return pixely; }
+		float pixelX() { return pixelx; }
+		float pixelY() { return pixely; }
 		void setDirection(int dir);
 		int getDirection();
 		void renderPacMan();
-		float pacSpeed = 0.5f;
+		bool isSwitchableX() { return switchablex; }
+		bool isSwitchableY() {return switchabley;}
+		float pacSpeed = 1.0f;
 
 	private:
 		bool alive = true;
+		bool switchablex; //if his dir can be switched left or right
+		bool switchabley; 
 		int row;
 		int col;
 		float pixelx;

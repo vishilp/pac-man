@@ -68,7 +68,7 @@ void Game::loadBoardTexture() {
 void Game::updatePacMan()  //OLD FUNCTION, NO LONGER NECESSARY
 {
 	int tiletype = 0;
-	if (!map->isValidMove(player))
+	if (!map->isValidMove(player, player->getDirection()))
 		return;
 	if (player->getDirection() == RIGHT)
 	{
@@ -168,27 +168,23 @@ void Game::handleEvents() {
 			{
 				case SDLK_RIGHT:
 				{
-					player->setDirection(RIGHT);
-					if (!map->isValidMove(player))
-						player->setDirection(currentdir);
+					if (map->isValidMove(player, RIGHT))
+						player->setDirection(RIGHT);
 				}break;
 				case SDLK_LEFT:
 				{
-					player->setDirection(LEFT);
-					if (!map->isValidMove(player))
-						player->setDirection(currentdir);
+					if (map->isValidMove(player, LEFT))
+						player->setDirection(LEFT);
 				}break;
 				case SDLK_UP:
 				{
-					player->setDirection(UP);
-					if (!map->isValidMove(player))
-						player->setDirection(currentdir);
+					if (map->isValidMove(player, UP))
+						player->setDirection(UP);
 				}break;
 				case SDLK_DOWN:
 				{
-					player->setDirection(DOWN);
-					if (!map->isValidMove(player))
-						player->setDirection(currentdir);
+					if (map->isValidMove(player, DOWN))
+						player->setDirection(DOWN);
 				}break;
 			}
 		default:
@@ -201,7 +197,7 @@ void Game::handleEvents() {
 void Game::handlePacManMovement(int dir)
 {
 	int tiletype = 0;
-	if (!map->isValidMove(player))
+	if (!map->isValidMove(player, dir))
 		return;
 	player->movePacMan(dir);
 	player->renderPacMan();

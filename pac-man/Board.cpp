@@ -1,8 +1,9 @@
 #include "Board.h"
 
-bool Board::isValidMove(PacMan* pac)
+bool Board::isValidMove(PacMan* pac, int dir)
 {
-	int dir = pac->getDirection();
+
+
 	if (dir == RIGHT)
 	{
 		if (board1[pac->Row()][pac->Col() + 1] >= 45)

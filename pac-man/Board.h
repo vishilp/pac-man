@@ -15,7 +15,7 @@ class Board {
 		int width = 28;
 
 		int movePacMan(int dir, int x, int y); //maybe set to int and return int of what tile it was before pacman got on
-		bool isValidMove(PacMan* pac);
+		bool isValidMove(PacMan* pac, int dir);
 
 		int board1[31][28] = { //31 rows, 28 col
 		{2, 11, 11, 11, 11, 11, 11, 11, 11,11, 11, 11, 11,39, 40, 11, 11,11, 11, 11, 11,11, 11, 11, 11,11, 11, 1},

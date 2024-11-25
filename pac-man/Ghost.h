@@ -37,7 +37,7 @@ class Ghost {
 		float pixely;
 		int direction;
 		bool chasemode = true;  //chase, scatter, killable
-		float speed = 0.025f;
+		float speed = 0.5f;
 
 
 };

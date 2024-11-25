@@ -17,14 +17,10 @@ void Blinky::updateGhost()
 	{
 		std::vector<Node> nodes = findPath(map, Blinky, Pac, &manager);
 		translateNodeToDir(nodes[0]);
-		for (int i = 0; i < TextureManager::SpriteWidth / getSpeed(); i++)
-		{
-			moveGhost();
-			renderGhost();
-		}
-		updateRowsorCols(getDirection());
-
-
+		moveGhost();
+		renderGhost();
+		if ((fmod(pixelX(), 16.0) == 0) && (fmod(pixelY(), 16.0) == 0))
+			updateRowsorCols(getDirection());
 	}
 }
 

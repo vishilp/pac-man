@@ -14,7 +14,7 @@ class Ghost {
 		int getCol();
 		void setRow(int r);
 		void setCol(int c);
-		void updateRowsorCols(int dir);
+		void updateRowsorCols();
 		float pixelX() { return pixelx; }
 		float pixelY() { return pixely; }
 		bool chaseMode() { return chasemode; }

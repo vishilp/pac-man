@@ -68,7 +68,7 @@ void Pinky::updateGhost()
 			translateNodeToDir(nodes[0]);
 		moveGhost();
 		renderGhost();
-		if ((fmod(pixelX(), 16.0) == 0) && (fmod(pixelY(), 16.0) == 0))
-			updateRowsorCols(getDirection());
+		if ((fmod(pixelX(), 16.0) == 0) && (fmod(pixelY(), 16.0) == 0)) ///only change direction when completely on a cell
+			updateRowsorCols();
 	}
 }

@@ -19,16 +19,10 @@ int Ghost::getCol() { return col; }
 void Ghost::setRow(int r) { row = r; }
 void Ghost::setCol(int c) { col = c; }
 
-void Ghost::updateRowsorCols(int dir)
+void Ghost::updateRowsorCols()
 {
-	if (dir == RIGHT)
-		col += 1;
-	if (dir == LEFT)
-		col -= 1;
-	if (dir == UP)
-		row -= 1;
-	if (dir == DOWN)
-		row += 1;
+	col = pixelx / 16;
+	row = pixely / 16;
 }
 
 bool Ghost::isOnPacMan()

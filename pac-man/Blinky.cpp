@@ -20,7 +20,7 @@ void Blinky::updateGhost()
 		moveGhost();
 		renderGhost();
 		if ((fmod(pixelX(), 16.0) == 0) && (fmod(pixelY(), 16.0) == 0))
-			updateRowsorCols(getDirection());
+			updateRowsorCols();
 	}
 }
 

@@ -27,6 +27,21 @@ bool Board::isValidMove(PacMan* pac, int dir)
 	return false;
 }
 
+
+bool Board::isValidPinkyMove(int targetrow, int targetcol)
+{
+	if (targetrow < 0 || targetrow >= height)
+		return false;
+	if (targetcol < 0 || targetcol >= width)
+		return false;
+	
+	if (board1[targetrow][targetcol] >= 45)
+		return true;
+	else
+		return false;
+}
+
+
 int Board::movePacMan(int dir, int row, int col)
 {
 	int temp = 0;

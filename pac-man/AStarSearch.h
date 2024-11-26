@@ -9,6 +9,7 @@
 struct Node
 {
     Node(int r, int c) { row = r; col = c; gCost = 0; hCost = 0; fCost = 0; parent = nullptr; }
+    Node() { row = 0; col = 0; gCost = 0; hCost = 0; fCost = 0; parent = nullptr; } 
     int row;
     int col;
     int gCost;  //cost so far

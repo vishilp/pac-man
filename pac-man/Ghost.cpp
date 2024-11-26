@@ -33,6 +33,7 @@ void Ghost::updateRowsorCols(int dir)
 
 bool Ghost::isOnPacMan()
 {
+	//check through pixel values instead
 	if (row == player->Row() && col == player->Col())
 		return true;
 	return false;
@@ -40,6 +41,8 @@ bool Ghost::isOnPacMan()
 
 void Ghost::moveGhost()
 {
+	pixelx *= 10; 
+	pixely *= 10;
 	if (direction == RIGHT)
 		pixelx += speed;
 	if (direction == LEFT)
@@ -48,4 +51,37 @@ void Ghost::moveGhost()
 		pixely -= speed;
 	if (direction == DOWN)
 		pixely += speed;
+	pixelx /= 10;
+	pixely /= 10;
+}
+
+void Ghost::translateNodeToDir(Node node)
+{
+	int r = getRow();
+	int c = getCol();
+
+	if (node.row == r)  //if rows are same, clearly the ghost needs to move through cols
+	{
+		if (node.col == c + 1) {
+			setDirection(RIGHT);
+			return;
+		}
+		if (node.col == c - 1) {
+			setDirection(LEFT);
+			return;
+		}
+
+	}
+
+	else
+	{
+		if (node.row == r + 1) {
+			setDirection(DOWN);
+			return;
+		}
+		if (node.row == r - 1) {
+			setDirection(UP);
+			return;
+		}
+	}
 }

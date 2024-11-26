@@ -2,6 +2,9 @@
 
 int PACMAN = 100;
 int BLINKY = 101;
+int PINKY = 102;
+int INKY = 103;
+int CLYDE = 105;
 int DOTTILE = 46;
 int LEFT = 1;
 int RIGHT = 2;

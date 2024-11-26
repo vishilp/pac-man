@@ -3,6 +3,9 @@
 
 extern int PACMAN; //extern to prevent multiple declarations
 extern int BLINKY;
+extern int PINKY;
+extern int INKY;
+extern int CLYDE;
 extern int DOTTILE;
 extern int SPAWNCOL;
 extern int SPAWNROW;

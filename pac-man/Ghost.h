@@ -31,7 +31,7 @@ class Ghost {
 		float getSpeed() { return speed; }
 
 		void translateNodeToDir(Node node);
-
+		bool moving;
 
 	private:
 		bool alive;

@@ -10,16 +10,30 @@ void Pinky::updateGhost()
 {
 	if (isOnPacMan())
 		return;
-
-	NodeManager manager;
-	Node Pinky(getRow(), getCol());
-	Node Pac;
-
-	int dir = player->getDirection();
-	switch (dir)
+	//finish direction before running A* again
+	if ((fmod(pixelX(), 16.0) == 0) && (fmod(pixelY(), 16.0) == 0)) ///only change direction when completely on a cell
 	{
-		case 0: //if no direction at start of game, dont move
-			return;
+		updateRowsorCols();
+		moving = false;
+	}
+	if (moving) {
+		moveGhost();
+		renderGhost();
+	}
+	else
+	{
+		moving = true;
+		NodeManager manager;
+		Node Pinky(getRow(), getCol());
+		Node Pac;
+
+		int dir = player->getDirection();
+		switch (dir)
+		{
+		case 0: //if no direction at start of game, chase pacman
+			Pac.row = player->Row();
+			Pac.col = player->Col();
+			break;
 		case 1: //left; keep checking to see if move is possible until you get to pacman, at which point get to his tile
 			for (int i = 4; i >= 0; i--)
 			{
@@ -44,7 +58,7 @@ void Pinky::updateGhost()
 			for (int i = 4; i >= 0; i--)
 			{
 				if (map->isValidPinkyMove(player->Row() - i, player->Col())) {
-					Pac.row = player->Row() -i;
+					Pac.row = player->Row() - i;
 					Pac.col = player->Col();
 					break;
 				}
@@ -60,15 +74,20 @@ void Pinky::updateGhost()
 				}
 			}
 			break;
+		}
+		if (chaseMode())
+		{
+			std::vector<Node> nodes = findPath(map, Pinky, Pac, &manager);
+			if (!nodes.empty())
+				translateNodeToDir(nodes[0]);
+			moveGhost();
+			renderGhost();
+			if ((fmod(pixelX(), 16.0) == 0) && (fmod(pixelY(), 16.0) == 0)) ///only change direction when completely on a cell
+			{
+				updateRowsorCols();
+				moving = false;
+			}
+		}
 	}
-	if (chaseMode())
-	{
-		std::vector<Node> nodes = findPath(map, Pinky, Pac, &manager);
-		if (!nodes.empty())
-			translateNodeToDir(nodes[0]);
-		moveGhost();
-		renderGhost();
-		if ((fmod(pixelX(), 16.0) == 0) && (fmod(pixelY(), 16.0) == 0)) ///only change direction when completely on a cell
-			updateRowsorCols();
-	}
+	
 }

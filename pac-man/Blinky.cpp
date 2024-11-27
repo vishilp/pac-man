@@ -10,17 +10,32 @@ void Blinky::updateGhost()
 {
 	if (isOnPacMan())
 		return;
-	NodeManager manager;
-	Node Blinky(getRow(), getCol());
-	Node Pac(player->Row(), player->Col());
-	if (chaseMode())
+	if ((fmod(pixelX(), 16.0) == 0) && (fmod(pixelY(), 16.0) == 0)) ///only change direction when completely on a cell
 	{
-		std::vector<Node> nodes = findPath(map, Blinky, Pac, &manager);
-		translateNodeToDir(nodes[0]);
+		updateRowsorCols();
+		moving = false;
+	}
+	if (moving) {
 		moveGhost();
 		renderGhost();
-		if ((fmod(pixelX(), 16.0) == 0) && (fmod(pixelY(), 16.0) == 0))
-			updateRowsorCols();
 	}
+	else {
+		moving = true;
+		NodeManager manager;
+		Node Blinky(getRow(), getCol());
+		Node Pac(player->Row(), player->Col());
+		if (chaseMode())
+		{
+			std::vector<Node> nodes = findPath(map, Blinky, Pac, &manager);
+			translateNodeToDir(nodes[0]);
+			moveGhost();
+			renderGhost();
+			if ((fmod(pixelX(), 16.0) == 0) && (fmod(pixelY(), 16.0) == 0)) {
+				updateRowsorCols();
+				moving = false;
+			}
+		}
+	}
+
 }
 

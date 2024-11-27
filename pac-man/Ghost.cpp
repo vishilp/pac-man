@@ -12,6 +12,7 @@ Ghost::Ghost(int r, int c, SDL_Renderer* renderer, SDL_Texture* spritesheet, Pac
 	sprites = spritesheet;
 	player = p;
 	map = board;
+	moving = false;
 }
 bool Ghost::isAlive() { return alive; }
 int Ghost::getRow() { return row; }

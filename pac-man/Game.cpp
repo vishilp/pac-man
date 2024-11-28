@@ -236,6 +236,7 @@ void Game::update() {
 	//do same thing for ghosts, only do A* when pacman is at new cell
 	ghosts[0]->updateGhost();
 	ghosts[1]->updateGhost();
+	ghosts[3]->updateGhost();
 
 	
 }

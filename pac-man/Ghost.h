@@ -32,6 +32,7 @@ class Ghost {
 
 		void translateNodeToDir(Node node);
 		bool moving;
+		void setChaseMode(bool mode) { chasemode = mode; }
 
 	private:
 		bool alive;

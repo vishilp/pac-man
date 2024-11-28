@@ -75,7 +75,7 @@ void Pinky::updateGhost()
 			}
 			break;
 		}
-		if (chaseMode())
+		if (chaseMode() && !isOnPacMan())
 		{
 			std::vector<Node> nodes = findPath(map, Pinky, Pac, &manager);
 			if (!nodes.empty())

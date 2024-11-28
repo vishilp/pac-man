@@ -24,10 +24,11 @@ void Blinky::updateGhost()
 		NodeManager manager;
 		Node Blinky(getRow(), getCol());
 		Node Pac(player->Row(), player->Col());
-		if (chaseMode())
+		if (chaseMode() && !isOnPacMan())
 		{
 			std::vector<Node> nodes = findPath(map, Blinky, Pac, &manager);
-			translateNodeToDir(nodes[0]);
+			if (!nodes.empty())
+				translateNodeToDir(nodes[0]);
 			moveGhost();
 			renderGhost();
 			if ((fmod(pixelX(), 16.0) == 0) && (fmod(pixelY(), 16.0) == 0)) {

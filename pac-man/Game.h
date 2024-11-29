@@ -41,5 +41,6 @@ class Game {
 		Board* map = nullptr;
 		int ghostcount = 4;
 		Ghost* ghosts[4];
+		int dotCount;
 };
 

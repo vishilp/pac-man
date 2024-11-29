@@ -36,7 +36,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height)
 
 
 void Game::loadBoardTexture() {
-
+	dotCount = 0;
 	boardTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, SCREEN_WIDTH, SCREEN_HEIGHT);
 	SDL_SetRenderTarget(renderer, boardTexture);
 
@@ -50,6 +50,7 @@ void Game::loadBoardTexture() {
 			if (walltype == 46) //for dots
 			{
 				Dot dot = Dot(renderer, wallsheet, spriterect, &dest);
+				dotCount += 1;
 				continue;
 			}
 			else

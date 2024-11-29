@@ -28,7 +28,7 @@ class Ghost {
 		SDL_Texture* sprites = nullptr;
 		PacMan* player = nullptr;
 		Board* map = nullptr;
-		float getSpeed() { return speed; }
+		int getSpeed() { return speed; }
 
 		void translateNodeToDir(Node node);
 		bool moving;

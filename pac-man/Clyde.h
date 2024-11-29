@@ -17,4 +17,5 @@ public:
 	};
 private:
 	bool shymode = false;
+	std::vector<Node> nodes;
 };

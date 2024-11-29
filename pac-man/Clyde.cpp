@@ -8,7 +8,6 @@ void Clyde::renderGhost()
 
 void Clyde::shyModeMove()
 {
-	std::vector<Node> nodes;
 	if (!shymode) { //if he wasn't already in shymode, i.e. just started going to his homezone
 		srand(time(0));
 		int randomNum = rand() % 34; //number between 0 and 33
@@ -17,14 +16,32 @@ void Clyde::shyModeMove()
 		Node Clyde(getRow(), getCol());
 		Node Target(pair.first, pair.second);
 		nodes = findPath(map, Clyde, Target, &manager);
-		if (!nodes.empty())
-			translateNodeToDir(nodes[0]);
-		moveGhost();
-		renderGhost();
+
 	}
 	else
 	{
-		//hes moving back and forth bcuz the random nums are happening too frequently, maybe have him choose a tile and follow it all the way
+		//go to homezone tile before resetting
+		if ((fmod(pixelX(), 16.0) == 0) && (fmod(pixelY(), 16.0) == 0))
+		{
+			updateRowsorCols();
+			if (nodes.empty())
+			{
+				shymode = false;
+			}
+			else
+			{
+				translateNodeToDir(nodes[0]);
+				nodes.erase(nodes.begin());
+				moveGhost();
+				renderGhost();
+			}
+		}
+		else
+		{
+			moveGhost();
+			renderGhost();
+		}
+
 	}
 	
 	

@@ -9,6 +9,7 @@
 class Ghost {
 	public:
 		Ghost(int r, int c, SDL_Renderer* renderer, SDL_Texture* spritesheet, PacMan* player, Board* board);
+		Ghost(int r, int c, SDL_Renderer* renderer, SDL_Texture* spritesheet, PacMan* player, Board* board, Ghost* Blinky); //for inky
 		bool isAlive();
 		int getRow(); //in the array, NOT in pixels
 		int getCol();
@@ -33,6 +34,7 @@ class Ghost {
 		void translateNodeToDir(Node node);
 		bool moving;
 		void setChaseMode(bool mode) { chasemode = mode; }
+		Ghost* blinky;
 
 	private:
 		bool alive;

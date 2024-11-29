@@ -28,7 +28,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height)
 	player = new PacMan(SPAWNROW,SPAWNCOL, renderer, spritesheet);
 	ghosts[0] = new Blinky(11,14, renderer, spritesheet, player, map);
 	ghosts[1] = new Pinky(14, 14, renderer, spritesheet, player, map);
-	ghosts[2] = new Inky(14, 12, renderer, spritesheet, player, map);
+	ghosts[2] = new Inky(14, 12, renderer, spritesheet, player, map, ghosts[0]);
 	ghosts[3] = new Clyde(14, 16, renderer, spritesheet, player, map);
 	
 }

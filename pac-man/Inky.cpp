@@ -31,12 +31,19 @@ void Inky::updateGhost()
 			row += 2;
 			break;
 		default:   // just follow pacman's current tile
+			break;
 		}
 
 		int rowvector = 2 * (blinky->getRow() - row);  //vectors from blinky's position to "ahead" tile, and then doubled
 		int colvector = 2 * (blinky->getCol() - col);
 		int targetrow = blinky->getRow() - rowvector;
 		int targetcol = blinky->getCol() - colvector;
+
+		if (!map->isValidPinkyMove(targetrow, targetcol))
+		{
+			targetrow = player->Row();
+			targetcol = player->Col();
+		}
 
 		moving = true;
 		NodeManager manager;
@@ -46,9 +53,12 @@ void Inky::updateGhost()
 		{
 			nodes = findPath(map, Inky, Target, &manager);
 			if (!nodes.empty())
+			{
 				translateNodeToDir(nodes[0]);
-			moveGhost();
-			renderGhost();
+				moveGhost();
+				renderGhost();
+			}
+
 		}
 		return;
 
@@ -66,7 +76,6 @@ void Inky::updateGhost()
 	if (moving) {
 		moveGhost();
 		renderGhost();
-		return;
 	}
 
 }

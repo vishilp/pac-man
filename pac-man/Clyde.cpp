@@ -50,6 +50,9 @@ void Clyde::shyModeMove()
 
 void Clyde::updateGhost()
 {
+	if (map->dotCount > 150)
+		return;
+
 	if (isOnPacMan())
 		return;
 	

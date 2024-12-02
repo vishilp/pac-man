@@ -59,6 +59,8 @@ void Game::loadBoardTexture() {
 		}
 
 	}
+
+	map->setDotCount(dotCount);
 	SDL_SetRenderTarget(renderer, NULL);
 }
 

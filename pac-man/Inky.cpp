@@ -8,6 +8,8 @@ void Inky::renderGhost()
 
 void Inky::updateGhost()
 {
+	if (map->dotCount > 200)
+		return;
 	if (isOnPacMan())
 		return;
 

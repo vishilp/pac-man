@@ -9,7 +9,7 @@
 
 class Board {
 	public:
-		Board() {};
+		Board() { dotCount = 0; };
 
 		int height = 31;
 		int width = 28;
@@ -17,6 +17,8 @@ class Board {
 		int movePacMan(int dir, int x, int y); //maybe set to int and return int of what tile it was before pacman got on
 		bool isValidMove(PacMan* pac, int dir);
 		bool isValidPinkyMove(int targetrow, int targetcol);
+		int dotCount;
+		void setDotCount(int count) { dotCount = count; }
 
 		int board1[31][28] = { //31 rows, 28 col
 		{2, 11, 11, 11, 11, 11, 11, 11, 11,11, 11, 11, 11,39, 40, 11, 11,11, 11, 11, 11,11, 11, 11, 11,11, 11, 1},

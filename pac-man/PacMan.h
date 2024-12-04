@@ -10,6 +10,7 @@ class PacMan{
 		PacMan(int row, int col, SDL_Renderer* renderer, SDL_Texture* spritesheet); //how does inheritance work with constructors?
 		~PacMan();
 		bool isAlive() { return alive; }
+		void setDead() { alive = false; }
 		void movePacMan(int dir); //in pixels
 		bool updateRowsorCols(); 
 		int Row() { return row; } //in the array, NOT in pixels

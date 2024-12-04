@@ -234,8 +234,10 @@ void Game::handlePacManMovement()
 
 void Game::update() {
 	//need to update the ghost and pacman at the same time
-
-	handlePacManMovement();
+	if (player->isAlive())
+		handlePacManMovement();
+	else
+		isRunning = false;
 	//do same thing for ghosts, only do A* when pacman is at new cell
 	for (int i = 0; i < ghostcount; i++)
 		ghosts[i]->updateGhost();

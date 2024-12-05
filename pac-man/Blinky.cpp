@@ -9,7 +9,10 @@ void Blinky::renderGhost()
 void Blinky::updateGhost()
 {
 	if (isOnPacMan())
+	{
+		player->setDead();
 		return;
+	}
 	if ((fmod(pixelX(), 16.0) == 0) && (fmod(pixelY(), 16.0) == 0)) ///only change direction when completely on a cell
 	{
 		updateRowsorCols();

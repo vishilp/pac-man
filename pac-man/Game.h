@@ -24,6 +24,7 @@ class Game {
 
 		void handleEvents();
 		void handlePacManMovement(); //movement frame by frame
+		void resetGame();// for when pacman is dead
 		void update();
 		void render();
 		void clean(); 

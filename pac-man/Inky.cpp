@@ -10,8 +10,12 @@ void Inky::updateGhost()
 {
 	if (map->dotCount > 200)
 		return;
+
 	if (isOnPacMan())
+	{
+		player->setDead();
 		return;
+	}
 
 	if (nodes.empty()) { //go to endpoint before running A* again
 		int dir = player->getDirection();

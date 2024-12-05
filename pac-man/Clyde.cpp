@@ -54,7 +54,11 @@ void Clyde::updateGhost()
 		return;
 
 	if (isOnPacMan())
+	{
+		player->setDead();
 		return;
+	}
+
 	
 	if (shymode)
 	{

@@ -237,12 +237,21 @@ void Game::update() {
 	if (player->isAlive())
 		handlePacManMovement();
 	else
-		isRunning = false;
+		resetGame();
 	//do same thing for ghosts, only do A* when pacman is at new cell
 	for (int i = 0; i < ghostcount; i++)
 		ghosts[i]->updateGhost();
 
 	
+}
+
+void Game::resetGame()
+{
+	SDL_RenderClear(renderer);
+
+
+	SDL_RenderPresent(renderer);
+	SDL_Delay(500);
 }
 
 void Game::render() {

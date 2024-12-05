@@ -9,7 +9,10 @@ void Pinky::renderGhost()
 void Pinky::updateGhost()
 {
 	if (isOnPacMan())
+	{
+		player->setDead();
 		return;
+	}
 	//finish direction before running A* again
 	if ((fmod(pixelX(), 16.0) == 0) && (fmod(pixelY(), 16.0) == 0)) ///only change direction when completely on a cell
 	{

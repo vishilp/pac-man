@@ -248,8 +248,19 @@ void Game::update() {
 void Game::resetGame()
 {
 	SDL_RenderClear(renderer);
-
-
+	SDL_RenderCopy(renderer, boardTexture, NULL, NULL);
+	delete player;
+	for (int i = 0; i < ghostcount; i++)
+		delete ghosts[i];
+	player = new PacMan(SPAWNROW, SPAWNCOL, renderer, spritesheet);
+	ghosts[0] = new Blinky(11, 14, renderer, spritesheet, player, map);
+	ghosts[1] = new Pinky(14, 14, renderer, spritesheet, player, map);
+	ghosts[2] = new Inky(14, 12, renderer, spritesheet, player, map, ghosts[0]);
+	ghosts[3] = new Clyde(14, 16, renderer, spritesheet, player, map);
+	player->renderPacMan();
+	for (int i = 0; i < ghostcount; i++)
+		ghosts[i]->renderGhost();
+	SDL_Delay(500);
 	SDL_RenderPresent(renderer);
 	SDL_Delay(500);
 }

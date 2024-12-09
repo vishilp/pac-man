@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include "Dot.h"
+#include "globals.h"
 
 //Wall textures are 16x16 with 2pixels in between
 

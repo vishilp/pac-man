@@ -124,7 +124,14 @@ bool PacMan::updateRowsorCols()
 void PacMan::renderPacMan()
 {
 	SDL_Rect spawnpoint = { pixelx, pixely, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
-	SDL_RenderCopy(ren, sprites, TextureManager::ReturnPacmanRect(), &spawnpoint);
+	if (direction == RIGHT || direction == 0)
+		SDL_RenderCopyEx(ren, sprites, TextureManager::ReturnPacmanRect(), &spawnpoint, 0, NULL, SDL_FLIP_NONE);
+	if (direction == DOWN)
+		SDL_RenderCopyEx(ren, sprites, TextureManager::ReturnPacmanRect(), &spawnpoint, 90, NULL, SDL_FLIP_NONE);
+	if (direction == LEFT)
+		SDL_RenderCopyEx(ren, sprites, TextureManager::ReturnPacmanRect(), &spawnpoint, 180, NULL, SDL_FLIP_NONE);
+	if (direction == UP)
+		SDL_RenderCopyEx(ren, sprites, TextureManager::ReturnPacmanRect(), &spawnpoint, 270, NULL, SDL_FLIP_NONE);
 }
 
 PacMan::~PacMan()

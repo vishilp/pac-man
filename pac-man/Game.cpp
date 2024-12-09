@@ -262,7 +262,6 @@ void Game::resetGame()
 		ghosts[i]->renderGhost();
 	SDL_Delay(500);
 	SDL_RenderPresent(renderer);
-	SDL_Delay(500);
 }
 
 void Game::render() {

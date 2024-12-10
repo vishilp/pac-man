@@ -1,5 +1,7 @@
 Future Goals:
 
 Add sound
-Update pacman sprite based on direction, and have his mouth move
-Maybe allow more of a time window for direction switches 
+have pacman's mouth open and close
+point system
+Big dot functionality
+fix ghost movement rules, like whether they can switch dirs

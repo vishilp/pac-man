@@ -47,8 +47,9 @@ void Ghost::updateRowsorCols()
 bool Ghost::isOnPacMan()
 {
 	//check through pixel values instead
-	if (row == player->Row() && col == player->Col())
-		return true;
+	if (pixelX() <= player->pixelX()+8 && (pixelX() >= player->pixelX() - 8))
+		if (pixelY() <= player->pixelY() + 8 && (pixelY() >= player->pixelY() - 8))
+			return true;
 	return false;
 }
 

@@ -7,6 +7,7 @@ extern int PINKY;
 extern int INKY;
 extern int CLYDE;
 extern int DOTTILE;
+extern int POWERPELLET;
 extern int SPAWNCOL;
 extern int SPAWNROW;
 extern int LEFT;

@@ -6,6 +6,7 @@ int PINKY = 102;
 int INKY = 103;
 int CLYDE = 105;
 int DOTTILE = 46;
+int POWERPELLET = 47;
 int LEFT = 1;
 int RIGHT = 2;
 int UP = 3;

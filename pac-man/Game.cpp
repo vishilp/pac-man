@@ -227,7 +227,7 @@ void Game::handlePacManMovement()
 				tiletype = map->movePacMan(DOWN, player->Row() - 1, player->Col());
 				break;
 		}
-		if (tiletype == DOTTILE)
+		if (tiletype == DOTTILE || tiletype == POWERPELLET)
 			loadBoardTexture();
 	}
 }

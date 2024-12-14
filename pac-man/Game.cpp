@@ -47,7 +47,7 @@ void Game::loadBoardTexture() {
 			int walltype = map->board1[j][i];
 			SDL_Rect dest = { i * TextureManager::SpriteWidth, j * TextureManager::SpriteHeight, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
 			SDL_Rect* spriterect = TextureManager::ReturnSpriteRect(walltype);
-			if (walltype == 46) //for dots
+			if (walltype == DOTTILE) //for dots
 			{
 				Dot dot = Dot(renderer, wallsheet, spriterect, &dest);
 				dotCount += 1;
@@ -227,8 +227,13 @@ void Game::handlePacManMovement()
 				tiletype = map->movePacMan(DOWN, player->Row() - 1, player->Col());
 				break;
 		}
-		if (tiletype == DOTTILE || tiletype == POWERPELLET)
+		if (tiletype == DOTTILE)
 			loadBoardTexture();
+		if (tiletype == POWERPELLET) {
+			loadBoardTexture();
+			for (int i = 0; i < ghostcount; i++)
+				ghosts[i]->setChaseMode(false);
+		}
 	}
 }
 

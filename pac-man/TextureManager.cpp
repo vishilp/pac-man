@@ -77,3 +77,11 @@ SDL_Rect* TextureManager::ReturnClydeRect()
 	return &rect;
 }
 
+SDL_Rect* TextureManager::ReturnScaredGhost()
+{
+	SDL_Rect rect = { 130, 62, TextureManager::SpriteWidth, TextureManager::SpriteHeight };
+	return &rect;
+}
+
+
+

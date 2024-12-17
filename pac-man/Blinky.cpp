@@ -3,8 +3,8 @@
 void Blinky::renderGhost()
 {
 	SDL_Rect location = { pixelX(), pixelY(), TextureManager::SpriteWidth, TextureManager::SpriteHeight };
-	if (chaseMode())
-		SDL_RenderCopy(ren, sprites, TextureManager::ReturnBlinkyRect(), &location);
+	if (scaredMode())
+		SDL_RenderCopy(ren, sprites, TextureManager::ReturnScaredGhostRect(), &location);
 	else
 		SDL_RenderCopy(ren, sprites, TextureManager::ReturnBlinkyRect(), &location);
 }

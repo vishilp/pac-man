@@ -232,7 +232,7 @@ void Game::handlePacManMovement()
 		if (tiletype == POWERPELLET) {
 			loadBoardTexture();
 			for (int i = 0; i < ghostcount; i++)
-				ghosts[i]->setChaseMode(false);
+				ghosts[i]->setScaredMode(true);
 		}
 	}
 }

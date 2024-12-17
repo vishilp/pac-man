@@ -17,7 +17,7 @@ class TextureManager
 		static SDL_Rect* ReturnPinkyRect();
 		static SDL_Rect* ReturnInkyRect();
 		static SDL_Rect* ReturnClydeRect();
-		static SDL_Rect* ReturnScaredGhost();
+		static SDL_Rect* ReturnScaredGhostRect();
 
 		const static int SpriteHeight = 16;
 		const static int SpriteWidth = 16;

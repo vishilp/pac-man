@@ -11,6 +11,10 @@ void Blinky::renderGhost()
 
 void Blinky::updateGhost()
 {
+	if (scaredMode()) {
+		updateScaredGhost();
+		return;
+	}
 	if (isOnPacMan())
 	{
 		player->setDead();

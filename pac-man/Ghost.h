@@ -22,6 +22,7 @@ class Ghost {
 		bool scaredMode() { return scaredmode; }
 		void virtual renderGhost() {} //will be overridden by every ghost
 		void virtual updateGhost() {}
+		void updateScaredGhost();
 		void moveGhost();
 		int getDirection() { return direction; }
 		void setDirection(int dir) {direction = dir;}
@@ -31,6 +32,7 @@ class Ghost {
 		PacMan* player = nullptr;
 		Board* map = nullptr;
 		int getSpeed() { return speed; }
+		void setSpeed(int s) { speed = s; }
 
 		void translateNodeToDir(Node node);
 		bool moving;

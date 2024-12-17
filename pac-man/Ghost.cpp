@@ -99,3 +99,8 @@ void Ghost::translateNodeToDir(Node node)
 		}
 	}
 }
+
+void Ghost::updateScaredGhost() {
+	setSpeed(4);
+	return;
+}

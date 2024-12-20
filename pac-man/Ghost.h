@@ -5,6 +5,7 @@
 #include "PacMan.h"
 #include "Board.h"
 #include "AStarSearch.h"
+#include <random>
 
 class Ghost {
 	public:

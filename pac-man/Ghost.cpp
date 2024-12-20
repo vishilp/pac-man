@@ -101,6 +101,10 @@ void Ghost::translateNodeToDir(Node node)
 }
 
 void Ghost::updateScaredGhost() {
+	//create a scaredmoving to check if it just started scared mode
 	setSpeed(4);
+	//if already moving in a direction, finish it
+	//when on a new space, randomly choose valid direction to move
+	//make it so that they cannot use opposing dirs, e.g. if already moving left, don't switch right
 	return;
 }

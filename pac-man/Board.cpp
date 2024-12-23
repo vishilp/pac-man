@@ -41,6 +41,15 @@ bool Board::isValidPinkyMove(int targetrow, int targetcol)
 		return false;
 }
 
+std::vector<int> validScaredGhostMoves(int invaliddir) {
+	std::vector<int> dirlist;
+	//do not allow opposing dirs, if moving left already, don't switch right
+	
+	//do not allow ghost to move towards the middle edges
+	return dirlist;
+
+}
+
 
 int Board::movePacMan(int dir, int row, int col)
 {

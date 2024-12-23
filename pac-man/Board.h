@@ -1,6 +1,7 @@
 #pragma once
 #include "globals.h"
 #include "PacMan.h"
+#include <vector>
 
 //board is an array because no need for dynamic reallocation
 
@@ -17,6 +18,7 @@ class Board {
 		int movePacMan(int dir, int x, int y); //maybe set to int and return int of what tile it was before pacman got on
 		bool isValidMove(PacMan* pac, int dir);
 		bool isValidPinkyMove(int targetrow, int targetcol);
+		std::vector<int> validScaredGhostMoves(int invaliddir); 
 		int dotCount;
 		void setDotCount(int count) { dotCount = count; }
 

@@ -28,6 +28,7 @@ class Ghost {
 		int getDirection() { return direction; }
 		void setDirection(int dir) {direction = dir;}
 		void setOppositeDirection();
+		int getOppositeDirection();
 		bool isOnPacMan();
 		SDL_Renderer* ren = nullptr;
 		SDL_Texture* sprites = nullptr;

@@ -120,16 +120,42 @@ void Ghost::setOppositeDirection()
 	}
 }
 
+int Ghost::getOppositeDirection()
+{
+	switch (direction) {
+	case (1):
+		return 2;
+	case (2):
+		return 1;
+	case (3):
+		return 4;
+	case (4):
+		return 3;
+	default:
+		break;
+	}
+}
+
 void Ghost::updateScaredGhost() {
-	//create a scaredmoving to check if it just started scared mode
-	if (!scaredmoving) {
+	
+	if ((fmod(pixelX(), 16.0) == 0) && (fmod(pixelY(), 16.0) == 0)) ///only change direction when completely on a cell
+	{
+		updateRowsorCols();
+
+		//make it so that they cannot use opposing dirs, e.g. if already moving left, don't switch right
+
+	}
+	if (!scaredmoving) { //if scared mode just started
 		setSpeed(4);	
 		setOppositeDirection();
 		moveGhost();
 		renderGhost();
+		scaredmoving = true;
 	}
-	//if already moving in a direction, finish it
-	//when on a new space, randomly choose valid direction to move
-	//make it so that they cannot use opposing dirs, e.g. if already moving left, don't switch right
+	else //if already moving in a direction, finish it
+	{
+		moveGhost();
+		renderGhost();
+	}
 	return;
 }

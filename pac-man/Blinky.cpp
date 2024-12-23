@@ -13,6 +13,7 @@ void Blinky::updateGhost()
 {
 	if (scaredMode()) {
 		updateScaredGhost();
+		moving = false; //when done with scared mode, find another cell to target
 		return;
 	}
 	if (isOnPacMan())

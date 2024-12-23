@@ -27,6 +27,7 @@ class Ghost {
 		void moveGhost();
 		int getDirection() { return direction; }
 		void setDirection(int dir) {direction = dir;}
+		void setOppositeDirection();
 		bool isOnPacMan();
 		SDL_Renderer* ren = nullptr;
 		SDL_Texture* sprites = nullptr;
@@ -50,6 +51,7 @@ class Ghost {
 		int direction;
 		bool chasemode = true;  //chase, scatter
 		bool scaredmode = false;
+		bool scaredmoving = false;
 		int speed = 8; //must be divisible by 16 for it to work perfectly
 		//speed is 10x actual value for floating point precision reasons, divided by 10 later
 

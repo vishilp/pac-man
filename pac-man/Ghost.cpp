@@ -100,9 +100,34 @@ void Ghost::translateNodeToDir(Node node)
 	}
 }
 
+void Ghost::setOppositeDirection() 
+{
+	switch (direction) {
+	case (1):
+		direction = 2;
+		break;
+	case (2):
+		direction = 1;
+		break;
+	case (3):
+		direction = 4;
+		break;
+	case (4):
+		direction = 3;
+		break;
+	default: 
+		break;
+	}
+}
+
 void Ghost::updateScaredGhost() {
 	//create a scaredmoving to check if it just started scared mode
-	setSpeed(4);
+	if (!scaredmoving) {
+		setSpeed(4);	
+		setOppositeDirection();
+		moveGhost();
+		renderGhost();
+	}
 	//if already moving in a direction, finish it
 	//when on a new space, randomly choose valid direction to move
 	//make it so that they cannot use opposing dirs, e.g. if already moving left, don't switch right

@@ -18,7 +18,7 @@ class Board {
 		int movePacMan(int dir, int x, int y); //maybe set to int and return int of what tile it was before pacman got on
 		bool isValidMove(PacMan* pac, int dir);
 		bool isValidPinkyMove(int targetrow, int targetcol);
-		std::vector<int> validScaredGhostMoves(int invaliddir); 
+		std::vector<int> validScaredGhostMoves(int invaliddir, int row, int col); 
 		int dotCount;
 		void setDotCount(int count) { dotCount = count; }
 

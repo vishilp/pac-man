@@ -141,7 +141,7 @@ void Ghost::updateScaredGhost() {
 	if ((fmod(pixelX(), 16.0) == 0) && (fmod(pixelY(), 16.0) == 0)) ///only change direction when completely on a cell
 	{
 		updateRowsorCols();
-		std::vector<int> directions = map->validScaredGhostMoves(getOppositeDirection(), row, col);
+		std::vector<int> directions = map->validScaredGhostMoves(getOppositeDirection(), row, col, map);
 		//cannot use opposing dirs unless no other option, e.g. if already moving left, don't switch right
 		if (directions.empty())
 			setOppositeDirection();

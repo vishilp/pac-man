@@ -41,10 +41,50 @@ bool Board::isValidPinkyMove(int targetrow, int targetcol)
 		return false;
 }
 
-std::vector<int> validScaredGhostMoves(int invaliddir, int row, int col) {
+std::vector<int> validScaredGhostMoves(int invaliddir, int row, int col, Board* map) {
 	std::vector<int> dirlist;
 	//do not allow opposing dirs, if moving left already, don't switch right
-	
+	for (int i = 1; i <= 4; i++)
+	{
+		if (i == invaliddir)
+			continue;
+		else if (i == RIGHT)
+		{
+			if ((col + 1 < 28) && (map->board1[row][col + 1] >= 45))
+			{
+				dirlist.push_back(RIGHT);
+			}
+
+		}
+
+		else if (i == LEFT)
+		{
+			if ((col - 1 >= 0) && (map->board1[row][col - 1] >= 45))
+			{
+				dirlist.push_back(LEFT);
+			}
+
+		}
+
+		else if (i == UP)
+		{
+			if ((row - 1 >= 0) && (map->board1[row-1][col] >= 45))
+			{
+				dirlist.push_back(UP);
+			}
+
+		}
+
+		else if (i == DOWN)
+		{
+			if ((row + 1 < 31) && (map->board1[row + 1][col] >= 45))
+			{
+				dirlist.push_back(DOWN);
+			}
+
+		}
+
+	}
 	
 	return dirlist;
 
